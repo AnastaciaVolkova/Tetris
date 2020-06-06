@@ -21,3 +21,6 @@ Capstone project for Udacity CppND
 2. Make a build directory in the top level directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make`
 4. Run it: `./SnakeGame`.
+
+## Notes
+- renderer.cpp renderer.hpp are inspired from [Udacity Snake](https://github.com/udacity/CppND_Capstone_Snake_Game)
