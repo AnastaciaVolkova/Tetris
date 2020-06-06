@@ -2,7 +2,7 @@
 Capstone project for Udacity CppND
 ## Dependencies for Running Locally
 - cmake >= 3.16.7
-  -- All OSes: [click here for installation instructions](https://cmake.org/install/)
+  - All OSes: [click here for installation instructions](https://cmake.org/install/)
 - make >= 4.1
   - Linux: make is installed by default on most Linux distros
   - Mac: [install Xcode command line tools to get make](https://developer.apple.com/xcode/features/)
