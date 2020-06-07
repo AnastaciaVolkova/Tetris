@@ -1,3 +1,4 @@
+#include "controller.hpp"
 #include "model.hpp"
 #include "view.hpp"
 
@@ -15,5 +16,8 @@ int main() {
 
   View view(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
   Model model;
+  Controller controller(model, view);
+  view.SetController(&controller);
+  model.SetController(&controller);
   model.Run(kMsPerFrame);
 }
