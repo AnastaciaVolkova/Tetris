@@ -1,4 +1,4 @@
-#include "game.hpp"
+#include "model.hpp"
 #include "renderer.hpp"
 
 #include <iostream>
@@ -14,6 +14,6 @@ int main() {
   constexpr size_t kGridHeight{32};
 
   Renderer renderer(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
-  Game game;
-  game.Run(kMsPerFrame);
+  Model model;
+  model.Run(kMsPerFrame);
 }

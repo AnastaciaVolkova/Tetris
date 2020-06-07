@@ -1,10 +1,10 @@
-#include "game.hpp"
+#include "model.hpp"
 
 #include <iostream>
 
 using namespace std;
 
-void Game::Run(size_t kMsPerFrame) {
+void Model::Run(size_t kMsPerFrame) {
   bool to_continue = true;
   while (to_continue) {
     SDL_Event e;
