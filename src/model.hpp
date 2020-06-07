@@ -7,7 +7,6 @@ class Controller;
 class Model {
 public:
   Model() = default;
-  void Run(std::size_t kMsPerFrame);
   void SetController(Controller *controller) { controller_ = controller; };
 
 private:

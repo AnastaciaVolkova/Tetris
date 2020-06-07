@@ -19,5 +19,5 @@ int main() {
   Controller controller(model, view);
   view.SetController(&controller);
   model.SetController(&controller);
-  model.Run(kMsPerFrame);
+  controller.Run(kMsPerFrame);
 }
