@@ -1,5 +1,5 @@
-#ifndef RENDERER_H
-#define RENDERER_H
+#ifndef _VIEW_HPP_
+#define _VIEW_HPP_
 
 #include "SDL.h"
 #include <vector>

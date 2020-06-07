@@ -1,5 +1,5 @@
 #include "model.hpp"
-#include "renderer.hpp"
+#include "view.hpp"
 
 #include <iostream>
 
@@ -13,7 +13,7 @@ int main() {
   constexpr size_t kGridWidth{32};
   constexpr size_t kGridHeight{32};
 
-  Renderer renderer(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
+  View view(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
   Model model;
   model.Run(kMsPerFrame);
 }
