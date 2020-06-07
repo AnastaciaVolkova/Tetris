@@ -2,9 +2,8 @@
 #include <iostream>
 #include <string>
 
-Renderer::Renderer(const std::size_t screen_width,
-                   const std::size_t screen_height,
-                   const std::size_t grid_width, const std::size_t grid_height)
+View::Renderer(const std::size_t screen_width, const std::size_t screen_height,
+               const std::size_t grid_width, const std::size_t grid_height)
     : screen_width_(screen_width), screen_height_(screen_height),
       grid_width_(grid_width), grid_height_(grid_height) {
   // Initialize SDL

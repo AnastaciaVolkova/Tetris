@@ -4,11 +4,11 @@
 #include "SDL.h"
 #include <vector>
 
-class Renderer {
+class View {
 public:
-  Renderer(const std::size_t screen_width, const std::size_t screen_height,
-           const std::size_t grid_width, const std::size_t grid_height);
-  ~Renderer();
+  View(const std::size_t screen_width, const std::size_t screen_height,
+       const std::size_t grid_width, const std::size_t grid_height);
+  ~View();
 
 private:
   SDL_Window *sdl_window_;
