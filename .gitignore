@@ -1,2 +1,6 @@
 *.odt
 build/
+.idea/
+*.txt
+.doxygenconfig
+
