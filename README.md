@@ -20,7 +20,28 @@ Capstone project for Udacity CppND
 1. Clone this repo.
 2. Make a build directory in the top level directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make`
-4. Run it: `./SnakeGame`.
+4. Run it: `./tetris`.
 
 ## Notes
 - renderer.cpp renderer.hpp are inspired from [Udacity Snake](https://github.com/udacity/CppND_Capstone_Snake_Game)
+
+# Classes descriptions
+## Commands
+<pre>*Class contains user commands.*</pre>
+## Controller 
+<pre>*Class takes over interacting between game and its graphical representation.*</pre>
+### Controller::Controller(Model &model, View &view)
+<pre>*Constructor*</pre>
+- [in,out] model reference to model of game
+- [in,out] view reference to graphical representation of view
+
+### Controller::Run(size_t target_frame_duration)
+<pre>*Game loop*</pre>
+- [in] target_frame_duration duration of game loop (game frame)
+
+### Controller::Input(size_t target_frame_duration)
+<pre>*Get user command from keyboard.*<pre>
+-[in] target_frame_duration duration of game loop (game frame)
+returns Key code
+
+controller.hpp
