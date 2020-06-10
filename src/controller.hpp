@@ -2,6 +2,7 @@
 #define _CONTROLLER_HPP_
 #include "SDL.h"
 #include "model.hpp"
+#include "point.hpp"
 #include "view.hpp"
 
 //! Class contains user commands.

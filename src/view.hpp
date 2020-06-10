@@ -4,6 +4,7 @@
 #include "SDL.h"
 #include <vector>
 
+#include "point.hpp"
 class Controller;
 
 class View {

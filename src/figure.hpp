@@ -1,11 +1,7 @@
 #ifndef _FIGURE_HPP_
 #define _FIGURE_HPP_
+#include "point.hpp"
 #include <vector>
-
-struct Point {
-  int x, y;
-  Point(int xx, int yy) : x(xx), y(yy) {}
-};
 
 class Figure {
 private:
