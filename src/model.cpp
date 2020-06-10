@@ -2,4 +2,16 @@
 
 #include <iostream>
 
-using namespace std;
+using std::make_unique;
+using std::vector;
+
+Model::Model() { figure_ = make_unique<Figure>(Point({0, 0})); };
+
+vector<Point> Model::GetOccupiedSpace() {
+  vector<Point> space = figure_->GetForm();
+  for (auto &s : space)
+    s += figure_->GetPosition();
+  return space;
+};
+
+void Model::SetController(Controller *controller) { controller_ = controller; };

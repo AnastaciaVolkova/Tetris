@@ -6,13 +6,13 @@
 class Figure {
 private:
   // 2D vector describes the points of figure.
-  std::vector<std::vector<bool>> form_;
+  std::vector<Point> form_;
   Point position_; // Position of left top point.
 public:
   Figure();
-  Figure(Point &p);
+  Figure(Point &&p);
 
-  const std::vector<std::vector<bool>> &GetForm() const;
+  const std::vector<Point> GetForm() const;
   const Point &GetPosition() const;
   void SetPosition(Point p);
 };
