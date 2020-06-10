@@ -44,4 +44,7 @@ Capstone project for Udacity CppND
 -[in] target_frame_duration duration of game loop (game frame)
 returns Key code
 
+### Point
+Struct Point implements operations with points
+
 controller.hpp
