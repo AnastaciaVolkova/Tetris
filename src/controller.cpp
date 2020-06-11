@@ -31,7 +31,7 @@ void Controller::Run(size_t target_frame_duration) {
     default:
       to_continue = false;
     }
-    view_.Render(model_.GetOccupiedSpace());
+    Render(model_.GetOccupiedSpace());
     if ((SDL_GetTicks() - start) < target_frame_duration)
       SDL_Delay(target_frame_duration - (SDL_GetTicks() - start));
   }
@@ -62,7 +62,6 @@ Commands Controller::Input(size_t target_frame_duration) {
         return Commands::kExit;
       }
     }
-    Render(model_.GetOccupiedSpace());
   }
   return Commands::kNone;
 }
