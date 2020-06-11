@@ -1,5 +1,4 @@
 #include "controller.hpp"
-#include "figure.hpp"
 #include <iostream>
 
 using namespace std;
