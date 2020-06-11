@@ -33,5 +33,11 @@ private:
     \return Key code
   */
   Commands Input(size_t target_frame_duration);
+
+  //! Draw the figure
+  /*!
+    \param [in] space point to draw
+  */
+  Commands Render(std::vector<Point> space);
 };
 #endif
