@@ -42,9 +42,9 @@ private:
 
   //! Update game state
   /*!
-  Update game state
+  \param [in] command command from user
   */
-  void Update();
+  void Update(Commands command);
 
   //! Draw the figure
   /*!

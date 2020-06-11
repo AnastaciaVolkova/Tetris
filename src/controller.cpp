@@ -43,7 +43,7 @@ void Controller::Run() {
     default:
       to_continue = false;
     }
-    Update();
+    Update(command);
     Render(model_->GetOccupiedSpace());
     if ((SDL_GetTicks() - start) < target_frame_duration_)
       SDL_Delay(target_frame_duration_ - (SDL_GetTicks() - start));
@@ -79,7 +79,13 @@ Commands Controller::Input() {
   return Commands::kNone;
 }
 
-void Controller::Update() {
+void Controller::Update(Commands command) {
+  switch (command) {
+  case Commands::kRotate:
+  case Commands::kRotate_ws:
+    model_->Rotate();
+    break;
+  }
   // Set figure speed.
   float speed = float(view_->GetHeight()) / (model_->GetTimeFall() * 1000);
   // Get distance to pass at current frame (in pixels).
