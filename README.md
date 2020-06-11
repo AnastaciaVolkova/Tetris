@@ -48,17 +48,17 @@ returns Key code
 Struct Point implements operations with points
 
 ## Figure
-<pre>*Class Figure represents the game figure*</pre>
+*Class Figure represents the game figure*
 ### Figure::Figure()
-<pre>*Default constructor*</pre>
+*Default constructor*
 ### Figure::Figure(Point &&p)
-<pre>*Constructor*</pre>
+*Constructor*
 - [in] p point initial position of figure
 ### Figure::GetForm()
-<pre>*Get form of the figure*</pre>
+*Get form of the figure*
 returns vector with point of figure form
 ### Figure::GetPosition()
-<pre>*Get current position of figure*</pre>
+*Get current position of figure*
 ### Figure::SetPosition(Point p)
 <pre>*Set current position of figure*</pre>
 - [in] p position of figure
