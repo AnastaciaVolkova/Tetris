@@ -25,4 +25,4 @@ void Model::UpdatePosition(Point &&point) {
 
 void Model::RotateCounter() { figure_->RotateCounter(); }
 
-void Model::RotateCounter() { figure_->Rotate(); };
+void Model::Rotate() { figure_->Rotate(); };
