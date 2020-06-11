@@ -11,7 +11,7 @@ Figure::Figure() : position_(0, 0) {
 
 Figure::Figure(Point &&p) : Figure() { position_ = p; };
 
-std::vector<Point> Figure::GetForm() { return forms_[State::k0]; };
+std::vector<Point> Figure::GetForm() { return forms_[state_]; };
 
 const Point &Figure::GetPosition() const { return position_; };
 
