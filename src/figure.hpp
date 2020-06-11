@@ -7,17 +7,17 @@
 //! Contains rotation positions
 enum class State { k0, k90, k180, k270 };
 
+//! Contains figure color
+enum class Color { BROWN, YELLOW };
+
 //! Class Figure represents the game figure
 class Figure {
 public:
-  //! Default constructor
-  Figure();
-
   //! Constructor
   /*!
   \param [in] p point initial position of figure
   */
-  Figure(Point &&p);
+  Figure(Point &&p, Color color);
 
   //! Get form of the figure
   /*!
@@ -35,16 +35,17 @@ public:
   void SetPosition(Point &&p);
 
   //! Rotate counter clock-wise
-  void RotateCounter();
+  virtual void RotateCounter() = 0;
 
   //! Rotate clock-wise
-  void Rotate();
+  virtual void Rotate() = 0;
 
-private:
+protected:
   // Store in map points of figure, depending on state.
   std::map<State, std::vector<Point>> forms_;
 
   Point position_; // Position of left top point.
   State state_;    // Rotation state of figure.
+  Color color_;    // Figure color.
 };
 #endif

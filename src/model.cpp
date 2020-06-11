@@ -1,5 +1,6 @@
+#include "figure_lhook.hpp"
+#include "figure_square.hpp"
 #include "model.hpp"
-
 #include <iostream>
 
 using std::make_unique;
@@ -9,7 +10,7 @@ Model::Model(Controller *controller, int right_boundary, int bottom_boundary)
     : controller_(controller), right_boundary_(right_boundary),
       bottom_boundary_(bottom_boundary) {
   time_fall_ = 10;
-  figure_ = make_unique<Figure>(Point({0, 0}));
+  figure_ = make_unique<FigureSquare>(Point({0, 0}));
 };
 
 vector<Point> Model::GetOccupiedSpace() {
