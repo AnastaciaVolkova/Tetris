@@ -63,5 +63,22 @@ returns vector with point of figure form
 <pre>Set current position of figure</pre>
 - [in] p position of figure
 
+Controller
+
+## View
+<pre>Provides graphical part of the game.</pre>
+### View::View()
+<pre>Constructor</pre>
+- [in] screen_width width of screen
+- [in] screen_height height of screen
+- [in] grid_width width of element to draw
+- [in] grid_height height of element to draw
+### View::SetController(Controller *controller)
+<pre>Provide the controller for interaction with it</pre>
+- [in,out] controller controller for interaction
+### View::Render(std::vector<Point> x)
+<pre>Draw the points</pre>
+- [in] x points to draw
 controller.hpp
 figure.hpp
+view.hpp
