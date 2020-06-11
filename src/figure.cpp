@@ -13,4 +13,4 @@ const std::vector<Point> Figure::GetForm() const { return form_; };
 
 const Point &Figure::GetPosition() const { return position_; };
 
-void Figure::SetPosition(Point p) { position_ = p; };
+void Figure::SetPosition(Point &&p) { position_ = p; };

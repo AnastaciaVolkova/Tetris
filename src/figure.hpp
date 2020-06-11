@@ -28,7 +28,7 @@ public:
   /*!
   \param [in] p position of figure
   */
-  void SetPosition(Point p);
+  void SetPosition(Point &&p);
 
 private:
   // 2D vector describes the points of figure.
