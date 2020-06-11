@@ -44,7 +44,24 @@ Capstone project for Udacity CppND
 -[in] target_frame_duration duration of game loop (game frame)
 returns Key code
 
-### Point
+## Point
 Struct Point implements operations with points
 
+## Figure
+<pre>*Class Figure represents the game figure*</pre>
+### Figure::Figure()
+<pre>*Default constructor*</pre>
+### Figure::Figure(Point &&p)
+<pre>*Constructor*</pre>
+- [in] p point initial position of figure
+### Figure::GetForm()
+<pre>*Get form of the figure*</pre>
+returns vector with point of figure form
+### Figure::GetPosition()
+<pre>*Get current position of figure*</pre>
+### Figure::SetPosition(Point p)
+<pre>*Set current position of figure*</pre>
+- [in] p position of figure
+
 controller.hpp
+figure.hpp
