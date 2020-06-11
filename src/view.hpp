@@ -32,7 +32,7 @@ public:
 
   //! Getter for height of the game field
   /*!
-  returns height of the game field
+  \return returns height of the game field
   */
   size_t GetHeight();
 
