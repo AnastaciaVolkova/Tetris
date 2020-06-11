@@ -28,7 +28,7 @@ Capstone project for Udacity CppND
 # Classes descriptions
 ## Commands
 <pre>*Class contains user commands.*</pre>
-## Controller 
+## Controller
 <pre>*Class takes over interacting between game and its graphical representation.*</pre>
 ### Controller::Controller(Model &model, View &view)
 <pre>*Constructor*</pre>
@@ -48,17 +48,17 @@ returns Key code
 Struct Point implements operations with points
 
 ## Figure
-*Class Figure represents the game figure*
+<pre>*Class Figure represents the game figure*</pre>
 ### Figure::Figure()
-*Default constructor*
+<pre>*Default constructor*</pre>
 ### Figure::Figure(Point &&p)
-*Constructor*
+<pre>*Constructor*</pre>
 - [in] p point initial position of figure
 ### Figure::GetForm()
-*Get form of the figure*
+<pre>*Get form of the figure*</pre>
 returns vector with point of figure form
 ### Figure::GetPosition()
-*Get current position of figure*
+<pre>*Get current position of figure*</pre>
 ### Figure::SetPosition(Point p)
 <pre>*Set current position of figure*</pre>
 - [in] p position of figure
