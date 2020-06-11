@@ -27,20 +27,20 @@ Capstone project for Udacity CppND
 
 # Classes descriptions
 ## Commands
-<pre>*Class contains user commands.*</pre>
+<pre>Class contains user commands.</pre>
 ## Controller
-<pre>*Class takes over interacting between game and its graphical representation.*</pre>
+<pre>Class takes over interacting between game and its graphical representation.</pre>
 ### Controller::Controller(Model &model, View &view)
-<pre>*Constructor*</pre>
+<pre>Constructor</pre>
 - [in,out] model reference to model of game
 - [in,out] view reference to graphical representation of view
 
 ### Controller::Run(size_t target_frame_duration)
-<pre>*Game loop*</pre>
+<pre>Game loop</pre>
 - [in] target_frame_duration duration of game loop (game frame)
 
 ### Controller::Input(size_t target_frame_duration)
-<pre>*Get user command from keyboard.*</pre>
+<pre>Get user command from keyboard.</pre>
 -[in] target_frame_duration duration of game loop (game frame)
 returns Key code
 
@@ -48,19 +48,19 @@ returns Key code
 Struct Point implements operations with points
 
 ## Figure
-<pre>*Class Figure represents the game figure*</pre>
+<pre>Class Figure represents the game figure</pre>
 ### Figure::Figure()
-<pre>*Default constructor*</pre>
+<pre>Default constructor</pre>
 ### Figure::Figure(Point &&p)
-<pre>*Constructor*</pre>
+<pre>Constructor</pre>
 - [in] p point initial position of figure
 ### Figure::GetForm()
-<pre>*Get form of the figure*</pre>
+<pre>Get form of the figure</pre>
 returns vector with point of figure form
 ### Figure::GetPosition()
-<pre>*Get current position of figure*</pre>
+<pre>Get current position of figure</pre>
 ### Figure::SetPosition(Point p)
-<pre>*Set current position of figure*</pre>
+<pre>Set current position of figure</pre>
 - [in] p position of figure
 
 controller.hpp
