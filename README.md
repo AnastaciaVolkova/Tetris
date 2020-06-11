@@ -34,15 +34,16 @@ Capstone project for Udacity CppND
 <pre>Constructor</pre>
 - [in,out] model reference to model of game
 - [in,out] view reference to graphical representation of view
-
 ### Controller::Run(size_t target_frame_duration)
 <pre>Game loop</pre>
 - [in] target_frame_duration duration of game loop (game frame)
-
 ### Controller::Input(size_t target_frame_duration)
 <pre>Get user command from keyboard.</pre>
 -[in] target_frame_duration duration of game loop (game frame)
 returns Key code
+### Controller::Render(std::vector<Point> space)
+<pre>Draw the figure</pre>
+-[in] space point to draw
 
 ## Point
 Struct Point implements operations with points
