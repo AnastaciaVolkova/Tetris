@@ -16,7 +16,6 @@ Controller::Controller(size_t target_frame_duration, size_t screen_height)
 };
 
 void Controller::Run() {
-  Figure fig;
   bool to_continue = true;
   // Set figure speed.
   speed_ = float(view_->GetHeight()) / (model_->GetTimeFall() * 1000);
