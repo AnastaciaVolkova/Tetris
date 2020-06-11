@@ -7,5 +7,6 @@ struct Point {
   Point();
   Point(int xx, int yy);
   Point &operator+=(const Point &ot);
+  friend Point operator+(const Point &p1, const Point &p2);
 };
 #endif
