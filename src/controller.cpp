@@ -79,6 +79,15 @@ Commands Controller::Input() {
   return Commands::kNone;
 }
 
-void Controller::Update() {}
+void Controller::Update() {
+  // Set figure speed.
+  float speed = float(view_->GetHeight()) / (model_->GetTimeFall() * 1000);
+  // Get distance to pass at current frame (in pixels).
+  distance_y_ += static_cast<size_t>(round(speed * target_frame_duration_));
+  if (distance_y_ >= cell_size_) {
+    model_->UpdatePosition({0, 1});
+    distance_y_ = 0;
+  }
+}
 
 Commands Controller::Render(std::vector<Point> space) { view_->Render(space); };

@@ -31,6 +31,9 @@ private:
   const size_t width_cells_number_ = height_cells_number_ / proportion_;
   const size_t cell_size_;
 
+  // Distance, which the figure passes within several frames (pixels)
+  size_t distance_x_, distance_y_;
+
   //! Get user command from keyboard.
   /*!
     \return Key code
