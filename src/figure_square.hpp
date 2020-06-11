@@ -5,7 +5,7 @@
 #include <map>
 #include <vector>
 
-//! Class FigureSquare represents the game figure
+//! Class FigureSquare represents the game figure square
 class FigureSquare : public Figure {
 public:
   //! Constructor

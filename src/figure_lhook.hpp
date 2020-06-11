@@ -5,7 +5,7 @@
 #include <map>
 #include <vector>
 
-//! Class FigureHook represents the game figure
+//! Class FigureLHook represents the game figure Left Hook
 class FigureLHook : public Figure {
 public:
   //! Constructor
