@@ -11,9 +11,13 @@ public:
   void SetController(Controller *controller);
   std::vector<Point> GetOccupiedSpace();
   void UpdatePosition(Point &point);
+  //! Get fall time (s)
+  unsigned GetTimeFall();
 
 private:
   Controller *controller_;
   std::unique_ptr<Figure> figure_;
+  // Time, which needs figure to reach the bottom (s).
+  unsigned time_fall_;
 };
 #endif

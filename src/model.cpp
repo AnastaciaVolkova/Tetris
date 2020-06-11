@@ -5,7 +5,10 @@
 using std::make_unique;
 using std::vector;
 
-Model::Model() { figure_ = make_unique<Figure>(Point({0, 0})); };
+Model::Model() {
+  time_fall_ = 10;
+  figure_ = make_unique<Figure>(Point({0, 0}));
+};
 
 vector<Point> Model::GetOccupiedSpace() {
   vector<Point> space = figure_->GetForm();
@@ -15,3 +18,5 @@ vector<Point> Model::GetOccupiedSpace() {
 };
 
 void Model::SetController(Controller *controller) { controller_ = controller; };
+
+unsigned Model::GetTimeFall() { return time_fall_; };
