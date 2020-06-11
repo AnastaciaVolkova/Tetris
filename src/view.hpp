@@ -13,6 +13,7 @@ public:
        const std::size_t grid_width, const std::size_t grid_height);
   ~View();
   void SetController(Controller *controller) { controller_ = controller; };
+  void Render(std::vector<Point> x);
 
 private:
   SDL_Window *sdl_window_;

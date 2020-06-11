@@ -30,6 +30,27 @@ View::View(const std::size_t screen_width, const std::size_t screen_height,
   }
 }
 
+void View::Render(std::vector<Point> x) {
+  SDL_Rect block;
+  block.w = grid_width_;
+  block.h = grid_height_;
+
+  // Clear screen
+  SDL_SetRenderDrawColor(sdl_renderer_, 0x1E, 0x1E, 0x1E, 0xFF);
+  SDL_RenderClear(sdl_renderer_);
+
+  // Render food
+  SDL_SetRenderDrawColor(sdl_renderer_, 0xFF, 0xCC, 0x00, 0xFF);
+  for (const auto &i : x) {
+    block.x = i.x * block.w;
+    block.y = i.y * block.h;
+    SDL_RenderFillRect(sdl_renderer_, &block);
+  }
+
+  // Update Screen
+  SDL_RenderPresent(sdl_renderer_);
+};
+
 View::~View() {
   SDL_DestroyWindow(sdl_window_);
   SDL_DestroyRenderer(sdl_renderer_);
