@@ -22,9 +22,9 @@ public:
 
   //! Update position of figure
   /*!
-  \param [in] point new position
+  \param [in] point difference between new position and previous one
   */
-  void UpdatePosition(Point &point);
+  void UpdatePosition(Point &&point);
 
   //! Get fall time (s)
   unsigned GetTimeFall();

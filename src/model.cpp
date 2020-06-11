@@ -18,3 +18,7 @@ vector<Point> Model::GetOccupiedSpace() {
 };
 
 unsigned Model::GetTimeFall() { return time_fall_; };
+
+void Model::UpdatePosition(Point &&point) {
+  figure_->SetPosition(figure_->GetPosition() + point);
+};
