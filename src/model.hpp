@@ -5,12 +5,30 @@
 #include <memory>
 class Controller;
 
+//! Class implements game model
 class Model {
 public:
+  //! Constructor
   Model();
+
+  //! Setter for controller field
+  /*!
+  \param [in,out] controller pointer for manipulation
+  */
   void SetController(Controller *controller);
+
+  //! Receive points, which represent occupied by figure space
+  /*!
+  \return returns points of occupied space
+  */
   std::vector<Point> GetOccupiedSpace();
+
+  //! Update position of figure
+  /*!
+  \param [in] point new position
+  */
   void UpdatePosition(Point &point);
+
   //! Get fall time (s)
   unsigned GetTimeFall();
 

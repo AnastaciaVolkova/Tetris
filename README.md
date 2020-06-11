@@ -64,8 +64,6 @@ returns vector with point of figure form
 <pre>Set current position of figure</pre>
 - [in] p position of figure
 
-Controller
-
 ## View
 <pre>Provides graphical part of the game.</pre>
 ### View::View()
@@ -80,6 +78,24 @@ Controller
 ### View::Render(std::vector<Point> x)
 <pre>Draw the points</pre>
 - [in] x points to draw
+
+## Model
+<pre>Class implements game model</pre>
+### Model::Model()
+<pre>Constructor</pre>
+### Model::SetController(Controller *controller)
+<pre>Setter for controller field</pre>
+- [in,out] controller pointer for manipulation
+### Model::GetOccupiedSpace()
+<pre>Receive points, which represent occupied by figure space</pre>
+- returns points of occupied space
+### Model::UpdatePosition(Point &point)
+<pre>Update position of figure</pre>
+- [in] point new position
+### Model::GetTimeFall()
+<pre>Get fall time (s)</pre>
+
 controller.hpp
 figure.hpp
 view.hpp
+model.hpp
