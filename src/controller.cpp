@@ -3,12 +3,12 @@
 #include <iostream>
 
 using namespace std;
-void Controller::Run(size_t target_frame_duration) {
+void Controller::Run() {
   Figure fig;
   bool to_continue = true;
   while (to_continue) {
     size_t start = SDL_GetTicks();
-    Commands command = Input(target_frame_duration);
+    Commands command = Input();
     switch (command) {
     case Commands::kLeft:
       cout << "left" << endl;
@@ -33,8 +33,8 @@ void Controller::Run(size_t target_frame_duration) {
     }
     Update();
     Render(model_.GetOccupiedSpace());
-    if ((SDL_GetTicks() - start) < target_frame_duration)
-      SDL_Delay(target_frame_duration - (SDL_GetTicks() - start));
+    if ((SDL_GetTicks() - start) < target_frame_duration_)
+      SDL_Delay(target_frame_duration_ - (SDL_GetTicks() - start));
   }
 }
 
