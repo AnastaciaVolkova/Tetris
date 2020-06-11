@@ -1,5 +1,5 @@
-#ifndef _FIGURE_SQUARE_HPP_
-#define _FIGURE_SQUARE_HPP_
+#ifndef _FIGURE_LHOOK_HPP_
+#define _FIGURE_LHOOK_HPP_
 #include "figure.hpp"
 #include "point.hpp"
 #include <map>
