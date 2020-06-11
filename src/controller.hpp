@@ -4,6 +4,7 @@
 #include "model.hpp"
 #include "point.hpp"
 #include "view.hpp"
+#include <memory>
 
 //! Class contains user commands.
 enum class Commands { kLeft, kRight, kRotate, kRotate_ws, kDrop, kNone, kExit };
@@ -13,27 +14,25 @@ class Controller {
 public:
   //! Constructor
   /*!
-    \param [in,out] model reference to model of game
-    \param [in,out] view reference to graphical representation of view
     \param [in] target_frame_duration duration of game loop
+    \param [in] screen_height height of the window
   */
-  Controller(Model &model, View &view, size_t target_frame_duration)
-      : model_(model), view_(view),
-        target_frame_duration_(target_frame_duration_) {}
+  Controller(size_t target_frame_duration, size_t screen_height);
 
   //! Game loop
-  /*!
-    \param [in] target_frame_duration duration of game loop (game frame)
-  */
   void Run();
 
 private:
-  Model &model_;
-  View &view_;
+  std::unique_ptr<Model> model_;
+  std::unique_ptr<View> view_;
   size_t target_frame_duration_;
+  const size_t proportion_ = 2;
+  const size_t height_cells_number_ = 20;
+  const size_t width_cells_number_ = height_cells_number_ / proportion_;
+  const size_t cell_size_;
+
   //! Get user command from keyboard.
   /*!
-    \param [in] target_frame_duration duration of game loop (game frame)
     \return Key code
   */
   Commands Input();

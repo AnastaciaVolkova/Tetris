@@ -12,17 +12,15 @@ class View {
 public:
   //! Constructor
   /*!
-  \param [in] screen_height height of screen
-  */
-  View(const std::size_t screen_height);
-
-  ~View();
-
-  //! Provide the controller for interaction with it
-  /*!
+  \param [in] screen_width width of the screen
+  \param [in] screen_height height of the screen
+  \param [in] cell_size size of quadratic cell
   \param [in,out] controller controller for interaction
   */
-  void SetController(Controller *controller) { controller_ = controller; };
+  View(const std::size_t screen_width, const std::size_t screen_height,
+       const std::size_t cell_size, Controller *controller);
+
+  ~View();
 
   //! Draw the points
   /*!
@@ -42,7 +40,7 @@ private:
 
   const std::size_t screen_width_;
   const std::size_t screen_height_;
-  std::size_t cell_size_;
+  const std::size_t cell_size_;
   Controller *controller_;
 };
 

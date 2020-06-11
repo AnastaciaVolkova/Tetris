@@ -2,9 +2,10 @@
 #include <iostream>
 #include <string>
 
-View::View(const std::size_t screen_height)
-    : screen_height_(screen_height), screen_width_(screen_height_ / 2),
-      cell_size_(0) {
+View::View(const std::size_t screen_height, const std::size_t screen_width,
+           const std::size_t cell_size, Controller *controller)
+    : screen_height_(screen_height), screen_width_(screen_width),
+      cell_size_(cell_size), controller_(controller) {
   // Initialize SDL
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     std::cerr << "SDL could not initialize.\n";

@@ -3,6 +3,19 @@
 #include <iostream>
 
 using namespace std;
+
+using std::make_unique;
+using std::unique_ptr;
+using std::vector;
+
+Controller::Controller(size_t target_frame_duration, size_t screen_height)
+    : target_frame_duration_(target_frame_duration),
+      cell_size_(screen_height / height_cells_number_) {
+  model_ = make_unique<Model>(this);
+  view_ = make_unique<View>(screen_height, screen_height / proportion_,
+                            cell_size_, this);
+};
+
 void Controller::Run() {
   Figure fig;
   bool to_continue = true;
@@ -32,7 +45,7 @@ void Controller::Run() {
       to_continue = false;
     }
     Update();
-    Render(model_.GetOccupiedSpace());
+    Render(model_->GetOccupiedSpace());
     if ((SDL_GetTicks() - start) < target_frame_duration_)
       SDL_Delay(target_frame_duration_ - (SDL_GetTicks() - start));
   }
@@ -69,4 +82,4 @@ Commands Controller::Input() {
 
 void Controller::Update() {}
 
-Commands Controller::Render(std::vector<Point> space) { view_.Render(space); };
+Commands Controller::Render(std::vector<Point> space) { view_->Render(space); };

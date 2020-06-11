@@ -9,13 +9,10 @@ class Controller;
 class Model {
 public:
   //! Constructor
-  Model();
-
-  //! Setter for controller field
   /*!
-  \param [in,out] controller pointer for manipulation
+  \param [in,out] controller controller for manipulation
   */
-  void SetController(Controller *controller);
+  Model(Controller *controller);
 
   //! Receive points, which represent occupied by figure space
   /*!
