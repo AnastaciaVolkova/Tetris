@@ -2,10 +2,9 @@
 #include <iostream>
 #include <string>
 
-View::View(const std::size_t screen_width, const std::size_t screen_height,
-           const std::size_t grid_width, const std::size_t grid_height)
-    : screen_width_(screen_width), screen_height_(screen_height),
-      grid_width_(grid_width), grid_height_(grid_height) {
+View::View(const std::size_t screen_height)
+    : screen_height_(screen_height), screen_width_(screen_height_ / 2),
+      cell_size_(0) {
   // Initialize SDL
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     std::cerr << "SDL could not initialize.\n";
@@ -15,7 +14,7 @@ View::View(const std::size_t screen_width, const std::size_t screen_height,
   // Create Window
   sdl_window_ =
       SDL_CreateWindow("Tetris", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                       screen_width, screen_height, SDL_WINDOW_SHOWN);
+                       screen_width_, screen_height, SDL_WINDOW_SHOWN);
 
   if (nullptr == sdl_window_) {
     std::cerr << "Window could not be created.\n";
@@ -32,8 +31,8 @@ View::View(const std::size_t screen_width, const std::size_t screen_height,
 
 void View::Render(std::vector<Point> x) {
   SDL_Rect block;
-  block.w = grid_width_;
-  block.h = grid_height_;
+  block.w = cell_size_;
+  block.h = cell_size_;
 
   // Clear screen
   SDL_SetRenderDrawColor(sdl_renderer_, 0x1E, 0x1E, 0x1E, 0xFF);

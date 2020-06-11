@@ -9,12 +9,9 @@ using namespace std;
 int main() {
   constexpr size_t kFramesPerSecond{60};
   constexpr size_t kMsPerFrame{1000 / kFramesPerSecond};
-  constexpr size_t kScreenWidth{800};
-  constexpr size_t kScreenHeight{kScreenWidth * 2};
-  constexpr size_t kGridWidth{kScreenWidth / 10};
-  constexpr size_t kGridHeight{kGridWidth};
+  constexpr size_t kScreenHeight{1600};
 
-  View view(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
+  View view(kScreenHeight);
   Model model;
   Controller controller(model, view, kMsPerFrame);
   view.SetController(&controller);

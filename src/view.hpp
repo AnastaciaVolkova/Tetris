@@ -12,13 +12,9 @@ class View {
 public:
   //! Constructor
   /*!
-  \param [in] screen_width width of screen
   \param [in] screen_height height of screen
-  \param [in] grid_width width of element to draw
-  \param [in] grid_height height of element to draw
   */
-  View(const std::size_t screen_width, const std::size_t screen_height,
-       const std::size_t grid_width, const std::size_t grid_height);
+  View(const std::size_t screen_width);
 
   ~View();
 
@@ -46,8 +42,7 @@ private:
 
   const std::size_t screen_width_;
   const std::size_t screen_height_;
-  const std::size_t grid_width_;
-  const std::size_t grid_height_;
+  std::size_t cell_size_;
   Controller *controller_;
 };
 
