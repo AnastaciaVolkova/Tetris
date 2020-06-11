@@ -14,7 +14,7 @@ public:
   /*!
   \param [in] screen_height height of screen
   */
-  View(const std::size_t screen_width);
+  View(const std::size_t screen_height);
 
   ~View();
 
