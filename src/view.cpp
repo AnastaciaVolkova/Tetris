@@ -56,3 +56,5 @@ View::~View() {
   SDL_DestroyRenderer(sdl_renderer_);
   SDL_Quit();
 }
+
+size_t View::GetHeight() { return screen_height_; }

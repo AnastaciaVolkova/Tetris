@@ -34,6 +34,12 @@ public:
   */
   void Render(std::vector<Point> x);
 
+  //! Getter for height of the game field
+  /*!
+  returns height of the game field
+  */
+  size_t GetHeight();
+
 private:
   SDL_Window *sdl_window_;
   SDL_Renderer *sdl_renderer_;
