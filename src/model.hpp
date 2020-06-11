@@ -29,6 +29,12 @@ public:
   //! Get fall time (s)
   unsigned GetTimeFall();
 
+  //! Rotate counter clock-wise figure
+  void RotateCounter();
+
+  //! Rotate clock-wise figure
+  void Rotate();
+
 private:
   Controller *controller_;
   std::unique_ptr<Figure> figure_;

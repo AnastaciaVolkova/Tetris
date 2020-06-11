@@ -22,3 +22,7 @@ unsigned Model::GetTimeFall() { return time_fall_; };
 void Model::UpdatePosition(Point &&point) {
   figure_->SetPosition(figure_->GetPosition() + point);
 };
+
+void Model::RotateCounter() { figure_->RotateCounter(); }
+
+void Model::RotateCounter() { figure_->Rotate(); };

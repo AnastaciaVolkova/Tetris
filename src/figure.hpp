@@ -1,7 +1,11 @@
 #ifndef _FIGURE_HPP_
 #define _FIGURE_HPP_
 #include "point.hpp"
+#include <map>
 #include <vector>
+
+//! Contains rotation positions
+enum class State { k0, k90, k180, k270 };
 
 //! Class Figure represents the game figure
 class Figure {
@@ -19,7 +23,7 @@ public:
   /*!
   \return vector with point of figure form
   */
-  const std::vector<Point> GetForm() const;
+  std::vector<Point> GetForm();
 
   //! Get current position of figure
   const Point &GetPosition() const;
@@ -30,9 +34,17 @@ public:
   */
   void SetPosition(Point &&p);
 
+  //! Rotate counter clock-wise
+  void RotateCounter();
+
+  //! Rotate clock-wise
+  void Rotate();
+
 private:
-  // 2D vector describes the points of figure.
-  std::vector<Point> form_;
+  // Store in map points of figure, depending on state.
+  std::map<State, std::vector<Point>> forms_;
+
   Point position_; // Position of left top point.
+  State state_;    // Rotation state of figure.
 };
 #endif
