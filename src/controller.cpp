@@ -10,7 +10,7 @@ using std::vector;
 Controller::Controller(size_t target_frame_duration, size_t screen_height)
     : target_frame_duration_(target_frame_duration),
       cell_size_(screen_height / height_cells_number_) {
-  model_ = make_unique<Model>(this);
+  model_ = make_unique<Model>(this, width_cells_number_, height_cells_number_);
   view_ = make_unique<View>(screen_height, screen_height / proportion_,
                             cell_size_, this);
 };
@@ -84,6 +84,12 @@ void Controller::Update(Commands command) {
   case Commands::kRotate:
   case Commands::kRotate_ws:
     model_->Rotate();
+    break;
+  case Commands::kLeft:
+    model_->UpdatePosition({-1, 0});
+    break;
+  case Commands::kRight:
+    model_->UpdatePosition({1, 0});
     break;
   }
   // Set figure speed.

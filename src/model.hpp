@@ -11,8 +11,10 @@ public:
   //! Constructor
   /*!
   \param [in,out] controller controller for manipulation
+  \param [in] right_boundary right boundary of the game field
+  \param [in] bottom_boundary bottom boundry of the game field
   */
-  Model(Controller *controller);
+  Model(Controller *controller, int right_boundary, int bottom_boundary);
 
   //! Receive points, which represent occupied by figure space
   /*!
@@ -40,5 +42,9 @@ private:
   std::unique_ptr<Figure> figure_;
   // Time, which needs figure to reach the bottom (s).
   unsigned time_fall_;
+  const int right_boundary_, bottom_boundary_;
+
+  //! Check if figure is in boundaries of game field
+  bool CheckBoundaries();
 };
 #endif
