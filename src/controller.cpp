@@ -31,18 +31,19 @@ void Controller::Run(size_t target_frame_duration) {
     default:
       to_continue = false;
     }
+    Update();
     Render(model_.GetOccupiedSpace());
     if ((SDL_GetTicks() - start) < target_frame_duration)
       SDL_Delay(target_frame_duration - (SDL_GetTicks() - start));
   }
 }
 
-Commands Controller::Input(size_t target_frame_duration) {
+Commands Controller::Input() {
   // Use this value to check if event was caught.
   size_t start_time = SDL_GetTicks();
   SDL_Event event;
   while (SDL_PollEvent(&event) &&
-         ((SDL_GetTicks() - start_time) < target_frame_duration)) {
+         ((SDL_GetTicks() - start_time) < target_frame_duration_)) {
     if (event.type == SDL_QUIT) {
       return Commands::kExit;
     } else if (event.type == SDL_KEYDOWN) {
@@ -65,5 +66,7 @@ Commands Controller::Input(size_t target_frame_duration) {
   }
   return Commands::kNone;
 }
+
+void Controller::Update() {}
 
 Commands Controller::Render(std::vector<Point> space) { view_.Render(space); };

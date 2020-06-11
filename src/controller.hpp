@@ -15,24 +15,34 @@ public:
   /*!
     \param [in,out] model reference to model of game
     \param [in,out] view reference to graphical representation of view
+    \param [in] target_frame_duration duration of game loop
   */
-  Controller(Model &model, View &view) : model_(model), view_(view) {}
+  Controller(Model &model, View &view, size_t target_frame_duration)
+      : model_(model), view_(view),
+        target_frame_duration_(target_frame_duration_) {}
 
   //! Game loop
   /*!
     \param [in] target_frame_duration duration of game loop (game frame)
   */
-  void Run(size_t target_frame_duration);
+  void Run();
 
 private:
   Model &model_;
   View &view_;
+  size_t target_frame_duration_;
   //! Get user command from keyboard.
   /*!
     \param [in] target_frame_duration duration of game loop (game frame)
     \return Key code
   */
-  Commands Input(size_t target_frame_duration);
+  Commands Input();
+
+  //! Update game state
+  /*!
+  Update game state
+  */
+  void Update();
 
   //! Draw the figure
   /*!

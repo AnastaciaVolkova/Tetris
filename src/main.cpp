@@ -16,8 +16,8 @@ int main() {
 
   View view(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
   Model model;
-  Controller controller(model, view);
+  Controller controller(model, view, kMsPerFrame);
   view.SetController(&controller);
   model.SetController(&controller);
-  controller.Run(kMsPerFrame);
+  controller.Run();
 }
