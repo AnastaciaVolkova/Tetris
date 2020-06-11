@@ -40,7 +40,7 @@ Capstone project for Udacity CppND
 - [in] target_frame_duration duration of game loop (game frame)
 
 ### Controller::Input(size_t target_frame_duration)
-<pre>*Get user command from keyboard.*<pre>
+<pre>*Get user command from keyboard.*</pre>
 -[in] target_frame_duration duration of game loop (game frame)
 returns Key code
 
