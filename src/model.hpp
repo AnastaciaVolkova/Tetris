@@ -2,6 +2,7 @@
 #define _MODEL_HPP_
 #include "SDL.h"
 #include "figure.hpp"
+#include "pile.hpp"
 #include <memory>
 class Controller;
 
@@ -43,6 +44,9 @@ private:
   // Time, which needs figure to reach the bottom (s).
   unsigned time_fall_;
   const int right_boundary_, bottom_boundary_;
+
+  // Pile of fallen figures
+  Pile pile_;
 
   //! Check if figure is in boundaries of game field
   bool CheckBoundaries();

@@ -1,6 +1,7 @@
 #include "figure_lhook.hpp"
 #include "figure_square.hpp"
 #include "model.hpp"
+#include "pile.hpp"
 #include <iostream>
 
 using std::make_unique;
@@ -8,7 +9,8 @@ using std::vector;
 
 Model::Model(Controller *controller, int right_boundary, int bottom_boundary)
     : controller_(controller), right_boundary_(right_boundary),
-      bottom_boundary_(bottom_boundary) {
+      bottom_boundary_(bottom_boundary),
+      pile_(right_boundary_, bottom_boundary_) {
   time_fall_ = 10;
   figure_ = make_unique<FigureSquare>(Point({0, 0}));
 };
@@ -24,8 +26,13 @@ unsigned Model::GetTimeFall() { return time_fall_; };
 
 void Model::UpdatePosition(Point &&point) {
   figure_->SetPosition(figure_->GetPosition() + point);
+  // Check if figure is inside game field.
   if (!CheckBoundaries())
     figure_->SetPosition(figure_->GetPosition() - point);
+
+  // Check if figure reaches bottom.
+  if (pile_.IsTouched(figure_->GetForm()))
+    ;
 };
 
 void Model::RotateCounter() {
