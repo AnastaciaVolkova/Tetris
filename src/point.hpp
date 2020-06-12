@@ -1,6 +1,9 @@
 #ifndef _POINT_HPP_
 #define _POINT_HPP_
 
+//! Contains figure color
+enum class Color { BROWN, YELLOW };
+
 //! Struct Point implements operations with points
 struct Point {
   int x, y; // x,y coordinates

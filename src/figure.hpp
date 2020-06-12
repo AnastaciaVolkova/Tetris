@@ -7,9 +7,6 @@
 //! Contains rotation positions
 enum class State { k0, k90, k180, k270 };
 
-//! Contains figure color
-enum class Color { BROWN, YELLOW };
-
 //! Class Figure represents the game figure
 class Figure {
 public:
