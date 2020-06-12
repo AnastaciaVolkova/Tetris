@@ -4,9 +4,9 @@ using std::vector;
 
 Figure::Figure(Point &&p, Color color) : position_(p), color_(color){};
 
-const std::vector<Point> &Figure::GetForm() { return forms_[state_]; };
+const std::vector<Point> &Figure::GetForm() const { return forms_.at(state_); };
 
-const Point &Figure::GetPosition() { return position_; };
+const Point &Figure::GetPosition() const { return position_; };
 
 void Figure::SetPosition(Point &&p) { position_ = p; };
 

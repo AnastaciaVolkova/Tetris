@@ -20,10 +20,10 @@ public:
   /*!
   \return vector with point of figure form
   */
-  const std::vector<Point> &GetForm();
+  const std::vector<Point> &GetForm() const;
 
   //! Get current position of figure
-  const Point &GetPosition();
+  const Point &GetPosition() const;
 
   //! Set current position of figure
   /*!
