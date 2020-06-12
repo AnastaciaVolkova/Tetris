@@ -41,6 +41,9 @@ public:
 private:
   Controller *controller_;
   std::unique_ptr<Figure> figure_;
+
+  // Points to draw.
+  std::vector<Point> space_;
   // Time, which needs figure to reach the bottom (s).
   unsigned time_fall_;
   const int right_boundary_, bottom_boundary_;
@@ -50,5 +53,8 @@ private:
 
   //! Check if figure is in boundaries of game field
   bool CheckBoundaries();
+
+  // Update point to draw.
+  void UpdateSpace();
 };
 #endif
