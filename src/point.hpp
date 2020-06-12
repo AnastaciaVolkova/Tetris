@@ -2,7 +2,7 @@
 #define _POINT_HPP_
 
 //! Contains figure color
-enum class Color { BLACK, BROWN, YELLOW };
+enum class Color { BLACK, BROWN, YELLOW, GREY };
 
 //! Struct Point implements operations with points
 struct Point {
