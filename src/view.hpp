@@ -25,7 +25,7 @@ public:
   /*!
   \param [in] x points to draw
   */
-  void Render(std::vector<Point> x);
+  void Render(const std::vector<Point> &x);
 
   //! Getter for height of the game field
   /*!

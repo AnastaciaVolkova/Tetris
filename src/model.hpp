@@ -21,7 +21,7 @@ public:
   /*!
   \return returns points of occupied space
   */
-  std::vector<Point> GetOccupiedSpace();
+  const std::vector<Point> &GetOccupiedSpace();
 
   //! Update position of figure
   /*!

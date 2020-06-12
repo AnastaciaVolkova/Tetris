@@ -107,4 +107,6 @@ void Controller::Update(Commands command) {
   }
 }
 
-Commands Controller::Render(std::vector<Point> space) { view_->Render(space); };
+Commands Controller::Render(const std::vector<Point> &space) {
+  view_->Render(space);
+};

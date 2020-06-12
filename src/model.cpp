@@ -16,7 +16,7 @@ Model::Model(Controller *controller, int right_boundary, int bottom_boundary)
   UpdateSpace();
 };
 
-vector<Point> Model::GetOccupiedSpace() { return space_; };
+const vector<Point> &Model::GetOccupiedSpace() { return space_; };
 
 unsigned Model::GetTimeFall() { return time_fall_; };
 

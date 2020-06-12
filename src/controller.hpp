@@ -51,6 +51,6 @@ private:
   /*!
     \param [in] space point to draw
   */
-  Commands Render(std::vector<Point> space);
+  Commands Render(const std::vector<Point> &space);
 };
 #endif

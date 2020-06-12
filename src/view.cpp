@@ -33,7 +33,7 @@ View::View(const std::size_t screen_height, const std::size_t screen_width,
   }
 }
 
-void View::Render(std::vector<Point> x) {
+void View::Render(const std::vector<Point> &x) {
   SDL_Rect block;
   block.w = cell_size_;
   block.h = cell_size_;
