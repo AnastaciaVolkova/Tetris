@@ -16,24 +16,34 @@ Model::Model(Controller *controller, int right_boundary, int bottom_boundary)
 };
 
 vector<Point> Model::GetOccupiedSpace() {
-  vector<Point> space = figure_->GetForm();
-  for (auto &s : space)
-    s += figure_->GetPosition();
+  vector<Point> space;
+  if (figure_ != nullptr) {
+    vector<Point> v = figure_->GetForm();
+    copy(v.begin(), v.end(), std::back_inserter(space));
+    for (auto &s : space)
+      s += figure_->GetPosition();
+  }
+  vector<Point> p = pile_.GetPile();
+  copy(p.begin(), p.end(), std::back_inserter(space));
   return space;
 };
 
 unsigned Model::GetTimeFall() { return time_fall_; };
 
 void Model::UpdatePosition(Point &&point) {
+  if (figure_ == nullptr)
+    return;
   figure_->SetPosition(figure_->GetPosition() + point);
   // Check if figure is inside game field.
   if (!CheckBoundaries())
     figure_->SetPosition(figure_->GetPosition() - point);
 
   // Check if figure reaches bottom.
-  if (pile_.IsTouched(figure_->GetForm()))
-    ;
-};
+  if (pile_.IsTouched(figure_.get())) {
+    pile_.AddFigure(figure_.get());
+    figure_.release();
+  }
+}
 
 void Model::RotateCounter() {
   figure_->RotateCounter();

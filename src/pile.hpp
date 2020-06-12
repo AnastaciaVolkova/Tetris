@@ -1,5 +1,6 @@
 #ifndef _BOTTOM_HPP_
 #define _BOTTOM_HPP_
+#include "figure.hpp"
 #include "point.hpp"
 #include <vector>
 //! Class implements bottom of the game field
@@ -14,17 +15,17 @@ public:
 
   //! Checks if figure touches bottom
   /*!
-  \param [in] space points of figure
+  \param [in] figure figure to check if touches pile
   \return returns true if figure touches bottom
   */
-  bool IsTouched(const std::vector<Point> &space);
+  bool IsTouched(const Figure *figure);
 
   //! Add figure to pile
   /*!
   \param [in] space points of figure
   \return returns number of deleted lines
   */
-  int AddFigure(const std::vector<Point> &space);
+  int AddFigure(const Figure *figure);
 
   //! Get points of pile
   /*!
