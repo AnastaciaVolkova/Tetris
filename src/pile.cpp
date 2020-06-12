@@ -31,6 +31,6 @@ vector<Point> Pile::GetPile() {
   for (int c = 0; c < pile_space_.size(); c++)
     for (int r = 0; r < pile_space_[c].size(); r++)
       if (pile_space_[c][r])
-        piles.push_back(Point(c, max_y_ - r));
+        piles.push_back(Point(c, max_y_ - r, Color::GREY));
   return piles;
 }
