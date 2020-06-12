@@ -5,10 +5,22 @@ using std::move;
 using std::vector;
 
 FigureLHook::FigureLHook(Point &&point) : Figure(move(point), Color::YELLOW) {
-  forms_[State::k0] = {{0, 0}, {0, 1}, {0, 2}, {1, 2}};
-  forms_[State::k90] = {{0, 2}, {1, 2}, {2, 2}, {2, 1}};
-  forms_[State::k180] = {{0, 0}, {1, 0}, {1, 1}, {1, 2}};
-  forms_[State::k270] = {{0, 0}, {0, 1}, {1, 0}, {2, 0}};
+  forms_[State::k0] = {{0, 0, Color::YELLOW},
+                       {0, 1, Color::YELLOW},
+                       {0, 2, Color::YELLOW},
+                       {1, 2, Color::YELLOW}};
+  forms_[State::k90] = {{0, 2, Color::YELLOW},
+                        {1, 2, Color::YELLOW},
+                        {2, 2, Color::YELLOW},
+                        {2, 1, Color::YELLOW}};
+  forms_[State::k180] = {{0, 0, Color::YELLOW},
+                         {1, 0, Color::YELLOW},
+                         {1, 1, Color::YELLOW},
+                         {1, 2, Color::YELLOW}};
+  forms_[State::k270] = {{0, 0, Color::YELLOW},
+                         {0, 1, Color::YELLOW},
+                         {1, 0, Color::YELLOW},
+                         {2, 0, Color::YELLOW}};
 };
 
 void FigureLHook::RotateCounter() {
