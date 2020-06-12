@@ -1,6 +1,9 @@
 #include "view.hpp"
 #include <iostream>
 #include <string>
+#include <tuple>
+
+using std::tuple;
 
 View::View(const std::size_t screen_height, const std::size_t screen_width,
            const std::size_t cell_size, Controller *controller)
@@ -39,9 +42,12 @@ void View::Render(std::vector<Point> x) {
   SDL_SetRenderDrawColor(sdl_renderer_, 0x1E, 0x1E, 0x1E, 0xFF);
   SDL_RenderClear(sdl_renderer_);
 
-  // Render food
-  SDL_SetRenderDrawColor(sdl_renderer_, 0xFF, 0xCC, 0x00, 0xFF);
+  // Render block
   for (const auto &i : x) {
+    auto color = i.GetRgba();
+    SDL_SetRenderDrawColor(sdl_renderer_, std::get<0>(color),
+                           std::get<1>(color), std::get<2>(color),
+                           std::get<3>(color));
     block.x = i.x * block.w;
     block.y = i.y * block.h;
     SDL_RenderFillRect(sdl_renderer_, &block);

@@ -2,9 +2,8 @@
 #define _VIEW_HPP_
 
 #include "SDL.h"
-#include <vector>
-
 #include "point.hpp"
+#include <vector>
 class Controller;
 
 //! Provides graphical part of the game.

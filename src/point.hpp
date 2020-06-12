@@ -1,5 +1,6 @@
 #ifndef _POINT_HPP_
 #define _POINT_HPP_
+#include <tuple>
 
 //! Contains figure color
 enum class Color { BLACK, BROWN, YELLOW, GREY };
@@ -19,5 +20,8 @@ struct Point {
   Point &operator+=(const Point &ot);
   friend Point operator+(const Point &p1, const Point &p2);
   friend Point operator-(const Point &p1, const Point &p2);
+
+  //! Get tuple of rgba
+  std::tuple<int, int, int, int> GetRgba() const;
 };
 #endif
