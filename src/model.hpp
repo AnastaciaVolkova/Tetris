@@ -4,6 +4,7 @@
 #include "figure.hpp"
 #include "pile.hpp"
 #include <memory>
+#include <random>
 class Controller;
 
 //! Class implements game model
@@ -42,6 +43,11 @@ private:
   Controller *controller_;
   std::unique_ptr<Figure> figure_;
 
+  // Random engine for figure generator.
+  std::mt19937 random_engine_;
+  // Distribution for figure generator.
+  std::uniform_int_distribution<int> dist_;
+
   // Points to draw.
   std::vector<Point> space_;
   // Time, which needs figure to reach the bottom (s).
@@ -56,5 +62,8 @@ private:
 
   // Update point to draw.
   void UpdateSpace();
+
+  //! Get new figure
+  void FigureGenerator();
 };
 #endif

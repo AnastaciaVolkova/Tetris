@@ -1,8 +1,14 @@
+#include "figure1.hpp"
+#include "figure2.hpp"
 #include "figure4.hpp"
 #include "model.hpp"
 #include "pile.hpp"
 #include <iostream>
+
 using std::make_unique;
+using std::mt19937;
+using std::random_device;
+using std::uniform_int_distribution;
 using std::vector;
 
 Model::Model(Controller *controller, int right_boundary, int bottom_boundary)
@@ -10,7 +16,15 @@ Model::Model(Controller *controller, int right_boundary, int bottom_boundary)
       bottom_boundary_(bottom_boundary),
       pile_(right_boundary_, bottom_boundary_) {
   time_fall_ = 10;
-  figure_ = Figure4::make_lhook({0, 0});
+
+  // Ignite random engine.
+  random_device random_device;
+  random_engine_ = mt19937(random_device());
+  dist_ = uniform_int_distribution<int>(1, 6);
+
+  // Generate first figure.
+  FigureGenerator();
+
   UpdateSpace();
 };
 
@@ -33,6 +47,7 @@ void Model::UpdatePosition(Point &&point) {
   if (pile_.IsTouched(figure_.get())) {
     pile_.AddFigure(figure_.get());
     figure_.release();
+    FigureGenerator();
     to_update = true;
   }
   if (to_update)
@@ -80,4 +95,33 @@ void Model::UpdateSpace() {
   }
   vector<Point> p = pile_.GetPile();
   copy(p.begin(), p.end(), std::back_inserter(space_));
+}
+
+void Model::FigureGenerator() {
+  int d = dist_(random_engine_);
+  switch (d) {
+  case 0:
+    figure_ = Figure1::make_square({5, 0});
+    break;
+  case 1:
+    figure_ = Figure2::make_stick({5, 0});
+    break;
+  case 2:
+    figure_ = Figure2::make_ls({5, 0});
+    break;
+  case 3:
+    figure_ = Figure2::make_rs({5, 0});
+    break;
+  case 4:
+    figure_ = Figure4::make_lhook({5, 0});
+    break;
+  case 5:
+    figure_ = Figure4::make_rhook({5, 0});
+    break;
+  case 6:
+    figure_ = Figure4::make_t({5, 0});
+    break;
+  default:
+    break;
+  }
 }
