@@ -1,4 +1,5 @@
 #include "pile.hpp"
+#include <algorithm>
 #include <stdexcept>
 
 using std::vector;
@@ -7,9 +8,14 @@ Pile::Pile(int width, int height) : pile_space_(width), max_y_(height - 1) {}
 
 bool Pile ::IsTouched(const Figure *figure) {
   bool is_touched = false;
+  auto pile = GetPile();
   for (auto c : figure->GetForm()) {
     c += figure->GetPosition();
-    is_touched = is_touched || (c.y >= (max_y_ - pile_space_[c.x].size()));
+    // Find points of pile, which are right beneath current figure point.
+    auto touch = find_if(pile.begin(), pile.end(), [&](auto it) {
+      return ((c.x == it.x) && ((c.y + 1) == it.y));
+    });
+    is_touched = is_touched || (touch != pile.end()) || (c.y >= max_y_);
   }
   return is_touched;
 }
@@ -21,7 +27,7 @@ int Pile::AddFigure(const Figure *figure) {
     if ((max_y_ - p.y + 1) > pile_space_[p.x].size())
       pile_space_[p.x].resize((max_y_ - p.y + 1), false);
     if (pile_space_[p.x][max_y_ - p.y] == true)
-      throw std::runtime_error("Error pile: cell is alread occupied");
+      throw std::runtime_error("Error pile: cell is already occupied");
     pile_space_[p.x][max_y_ - p.y] = true;
   }
   return ClearLine();

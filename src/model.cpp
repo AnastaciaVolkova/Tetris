@@ -115,7 +115,6 @@ void Model::FigureGenerator() {
     figure_->SetPosition({0, 0});
   }
   int d = dist_(random_engine_);
-  d = 1;
   switch (d) {
   case 0:
     next_figure_ = Figure1::make_square({12, 5});
