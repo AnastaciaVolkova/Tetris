@@ -15,7 +15,6 @@ Model::Model(Controller *controller, int right_boundary, int bottom_boundary)
     : controller_(controller), right_boundary_(right_boundary),
       bottom_boundary_(bottom_boundary),
       pile_(right_boundary_, bottom_boundary_) {
-  time_fall_ = 10;
 
   // Ignite random engine.
   random_device random_device;
@@ -74,6 +73,8 @@ void Model::Rotate() {
     UpdateSpace();
 }
 
+void Model::Accelerate() { time_fall_ = kMinFallTime; }
+
 bool Model::CheckBoundaries() {
   bool inside_boundaries = true;
   for (const auto &f : figure_->GetForm()) {
@@ -124,4 +125,5 @@ void Model::FigureGenerator() {
   default:
     break;
   }
+  time_fall_ = kFallTime;
 }

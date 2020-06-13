@@ -39,7 +39,12 @@ public:
   //! Rotate clock-wise figure
   void Rotate();
 
+  //! Accelerate falling figure
+  void Accelerate();
+
 private:
+  const int kFallTime = 10;
+  const int kMinFallTime = 1;
   Controller *controller_;
   std::unique_ptr<Figure> figure_;
 
