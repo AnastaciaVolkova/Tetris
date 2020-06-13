@@ -6,6 +6,7 @@
 enum class Color {
   BLACK,
   BROWN,
+  RED,
   YELLOW,
   GREY,
   PINK,
