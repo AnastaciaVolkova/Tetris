@@ -11,8 +11,9 @@ enum class Color {
   GREY,
   PINK,
   CRIMSON,
-  LIME,        //#00FF00
-  GREEN_YELLOW //#ADFF2F
+  LIME,           //#00FF00
+  GREEN_YELLOW,   //#ADFF2F
+  CORNFLOWER_BLUE //#6495ED
 };
 
 //! Struct Point implements operations with points
