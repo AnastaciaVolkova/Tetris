@@ -60,6 +60,9 @@ private:
   unsigned time_fall_;
   const int right_boundary_, bottom_boundary_;
 
+  // Flag is pile was touched
+  bool was_touched_;
+
   // Pile of fallen figures
   Pile pile_;
 

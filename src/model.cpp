@@ -14,7 +14,7 @@ using std::vector;
 Model::Model(Controller *controller, int right_boundary, int bottom_boundary)
     : controller_(controller), right_boundary_(right_boundary),
       bottom_boundary_(bottom_boundary),
-      pile_(right_boundary_, bottom_boundary_) {
+      pile_(right_boundary_, bottom_boundary_), was_touched_(false) {
 
   // Ignite random engine.
   random_device random_device;
@@ -42,13 +42,15 @@ void Model::UpdatePosition(Point &&point) {
   else
     to_update = true;
 
-  // Check if figure reaches bottom.
-  if (pile_.IsTouched(figure_.get())) {
+  // Check if figure reached bottom during previous update.
+  if (was_touched_) {
     pile_.AddFigure(figure_.get());
     figure_.release();
     FigureGenerator();
     to_update = true;
+    was_touched_ = false;
   }
+  was_touched_ = pile_.IsTouched(figure_.get());
   if (to_update)
     UpdateSpace();
 }
