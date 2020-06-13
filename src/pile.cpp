@@ -24,6 +24,7 @@ int Pile::AddFigure(const Figure *figure) {
       throw std::runtime_error("Error pile: cell is alread occupied");
     pile_space_[p.x][max_y_ - p.y] = true;
   }
+  return ClearLine();
 }
 
 vector<Point> Pile::GetPile() {
@@ -33,4 +34,29 @@ vector<Point> Pile::GetPile() {
       if (pile_space_[c][r])
         piles.push_back(Point(c, max_y_ - r, Color::GREY));
   return piles;
+}
+
+unsigned Pile::ClearLine() {
+  unsigned num_lines = 0;
+  unsigned row = 0;
+  bool to_stop = false;
+  while (!to_stop) {
+    bool all_filled = true;
+    for (int c = 0; c < pile_space_.size(); c++) {
+      if (pile_space_[c].size() < (row + 1)) {
+        to_stop = true;
+        all_filled = false;
+        break;
+      } else
+        all_filled = all_filled && pile_space_[c][row];
+    }
+    // Remove row
+    if (all_filled)
+      for (int c = 0; c < pile_space_.size(); c++) {
+        pile_space_[c].erase(pile_space_[c].begin() + row);
+      }
+    else
+      row++;
+  }
+  return num_lines;
 }

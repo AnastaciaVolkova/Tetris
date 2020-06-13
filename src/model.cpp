@@ -3,6 +3,7 @@
 #include "figure4.hpp"
 #include "model.hpp"
 #include "pile.hpp"
+#include <algorithm>
 #include <iostream>
 
 using std::make_unique;
@@ -19,7 +20,7 @@ Model::Model(Controller *controller, int right_boundary, int bottom_boundary)
   // Ignite random engine.
   random_device random_device;
   random_engine_ = mt19937(random_device());
-  dist_ = uniform_int_distribution<int>(1, 6);
+  dist_ = uniform_int_distribution<int>(0, 6);
 
   // Generate first figures.
   FigureGenerator(); // First on game field.
@@ -79,11 +80,17 @@ void Model::Accelerate() { time_fall_ = kMinFallTime; }
 
 bool Model::CheckBoundaries() {
   bool inside_boundaries = true;
+  vector<Point> pile = pile_.GetPile();
   for (const auto &f : figure_->GetForm()) {
     Point a = f + figure_->GetPosition();
+    // Find if figure and pile intersect.
+    auto common = find_if(pile.begin(), pile.end(), [&](auto it) {
+      return (it.x == a.x) && (it.y == a.y);
+    });
     inside_boundaries =
         inside_boundaries &&
-        ((a.x >= 0) && (a.x < right_boundary_) && (a.y < bottom_boundary_));
+        ((a.x >= 0) && (a.x < right_boundary_) && (a.y < bottom_boundary_)) &&
+        (common == pile.end());
   }
   return inside_boundaries;
 }
@@ -108,6 +115,7 @@ void Model::FigureGenerator() {
     figure_->SetPosition({0, 0});
   }
   int d = dist_(random_engine_);
+  d = 1;
   switch (d) {
   case 0:
     next_figure_ = Figure1::make_square({12, 5});

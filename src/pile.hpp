@@ -36,5 +36,10 @@ public:
 private:
   std::vector<std::vector<bool>> pile_space_;
   int max_y_;
+  //! Search for line to clear and clear it
+  /*!
+  \return returns number of deleted lines
+  */
+  unsigned ClearLine();
 };
 #endif
