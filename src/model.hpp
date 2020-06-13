@@ -47,6 +47,7 @@ private:
   const int kMinFallTime = 1;
   Controller *controller_;
   std::unique_ptr<Figure> figure_;
+  std::unique_ptr<Figure> next_figure_;
 
   // Random engine for figure generator.
   std::mt19937 random_engine_;

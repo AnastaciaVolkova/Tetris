@@ -21,9 +21,9 @@ Model::Model(Controller *controller, int right_boundary, int bottom_boundary)
   random_engine_ = mt19937(random_device());
   dist_ = uniform_int_distribution<int>(1, 6);
 
-  // Generate first figure.
-  FigureGenerator();
-
+  // Generate first figures.
+  FigureGenerator(); // First on game field.
+  FigureGenerator(); // Next of first figure.
   UpdateSpace();
 };
 
@@ -88,39 +88,45 @@ bool Model::CheckBoundaries() {
 
 void Model::UpdateSpace() {
   space_.clear();
-  if (figure_ != nullptr) {
-    vector<Point> v = figure_->GetForm();
-    copy(v.begin(), v.end(), std::back_inserter(space_));
-    for (auto &s : space_)
-      s += figure_->GetPosition();
+  for (auto iv : figure_->GetForm()) {
+    iv += figure_->GetPosition();
+    space_.push_back(iv);
+  }
+  for (auto iv : next_figure_->GetForm()) {
+    iv += next_figure_->GetPosition();
+    space_.push_back(iv);
   }
   vector<Point> p = pile_.GetPile();
   copy(p.begin(), p.end(), std::back_inserter(space_));
 }
 
 void Model::FigureGenerator() {
+  if (next_figure_ != nullptr) {
+    figure_ = move(next_figure_);
+    figure_->SetPosition({0, 0});
+  }
   int d = dist_(random_engine_);
   switch (d) {
   case 0:
-    figure_ = Figure1::make_square({5, 0});
+    next_figure_ = Figure1::make_square({12, 5});
     break;
   case 1:
-    figure_ = Figure2::make_stick({5, 0});
+    next_figure_ = Figure2::make_stick({12, 5});
     break;
   case 2:
-    figure_ = Figure2::make_ls({5, 0});
+    next_figure_ = Figure2::make_ls({12, 5});
     break;
   case 3:
-    figure_ = Figure2::make_rs({5, 0});
+    next_figure_ = Figure2::make_rs({12, 5});
     break;
   case 4:
-    figure_ = Figure4::make_lhook({5, 0});
+    next_figure_ = Figure4::make_lhook({12, 5});
     break;
   case 5:
-    figure_ = Figure4::make_rhook({5, 0});
+    next_figure_ = Figure4::make_rhook({12, 5});
     break;
   case 6:
-    figure_ = Figure4::make_t({5, 0});
+    next_figure_ = Figure4::make_t({12, 5});
     break;
   default:
     break;

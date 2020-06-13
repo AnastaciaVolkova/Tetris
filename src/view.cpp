@@ -52,10 +52,18 @@ void View::Render(const std::vector<Point> &x) {
   SDL_SetRenderDrawColor(sdl_renderer_, 0xff, 0xd7, 0, 0xff);
   SDL_RenderFillRect(sdl_renderer_, &field);
 
-  // Draw field game
+  // Draw game field
   field.w = game_field_width_;
   field.h = game_field_height_;
   field.x = 0;
+  field.y = 0;
+  SDL_SetRenderDrawColor(sdl_renderer_, 0x1e, 0x1e, 0x1e, 0xff);
+  SDL_RenderFillRect(sdl_renderer_, &field);
+
+  // Draw info field
+  field.w = info_field_width_;
+  field.h = info_field_height_;
+  field.x = game_field_width_ + border_width_;
   field.y = 0;
   SDL_SetRenderDrawColor(sdl_renderer_, 0x1e, 0x1e, 0x1e, 0xff);
   SDL_RenderFillRect(sdl_renderer_, &field);
