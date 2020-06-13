@@ -37,8 +37,8 @@ private:
   SDL_Window *sdl_window_;
   SDL_Renderer *sdl_renderer_;
 
-  const std::size_t screen_width_;
-  const std::size_t screen_height_;
+  const std::size_t game_field_width_;
+  const std::size_t game_field_height_;
   const std::size_t cell_size_;
   Controller *controller_;
 };

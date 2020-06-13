@@ -7,7 +7,7 @@ using std::tuple;
 
 View::View(const std::size_t screen_height, const std::size_t screen_width,
            const std::size_t cell_size, Controller *controller)
-    : screen_height_(screen_height), screen_width_(screen_width),
+    : game_field_height_(screen_height), game_field_width_(screen_width),
       cell_size_(cell_size), controller_(controller) {
   // Initialize SDL
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -18,7 +18,7 @@ View::View(const std::size_t screen_height, const std::size_t screen_width,
   // Create Window
   sdl_window_ =
       SDL_CreateWindow("Tetris", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                       screen_width_, screen_height, SDL_WINDOW_SHOWN);
+                       game_field_width_, screen_height, SDL_WINDOW_SHOWN);
 
   if (nullptr == sdl_window_) {
     std::cerr << "Window could not be created.\n";
@@ -63,4 +63,4 @@ View::~View() {
   SDL_Quit();
 }
 
-size_t View::GetHeight() { return screen_height_; }
+size_t View::GetHeight() { return game_field_height_; }
