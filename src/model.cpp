@@ -1,9 +1,7 @@
-#include "figure_lhook.hpp"
-#include "figure_square.hpp"
+#include "figure4.hpp"
 #include "model.hpp"
 #include "pile.hpp"
 #include <iostream>
-
 using std::make_unique;
 using std::vector;
 
@@ -12,7 +10,7 @@ Model::Model(Controller *controller, int right_boundary, int bottom_boundary)
       bottom_boundary_(bottom_boundary),
       pile_(right_boundary_, bottom_boundary_) {
   time_fall_ = 10;
-  figure_ = make_unique<FigureSquare>(Point({0, 0}));
+  figure_ = Figure4::make_lhook({0, 0});
   UpdateSpace();
 };
 
