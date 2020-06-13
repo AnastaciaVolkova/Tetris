@@ -90,7 +90,7 @@ unique_ptr<Figure4> Figure4::make_t(Point &&p) {
   fig->forms_[State::k0] = {{0, 2, fig->color_},
                             {1, 2, fig->color_},
                             {2, 2, fig->color_},
-                            {1, 2, fig->color_}};
+                            {1, 1, fig->color_}};
   fig->forms_[State::k90] = {{0, 1, fig->color_},
                              {1, 0, fig->color_},
                              {1, 1, fig->color_},
