@@ -3,7 +3,7 @@
 #include <tuple>
 
 //! Contains figure color
-enum class Color { BLACK, BROWN, YELLOW, GREY, PINK };
+enum class Color { BLACK, BROWN, YELLOW, GREY, PINK, CRIMSON };
 
 //! Struct Point implements operations with points
 struct Point {

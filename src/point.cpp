@@ -31,6 +31,8 @@ tuple<int, int, int, int> Point::GetRgba() const {
     return make_tuple(0x80, 0x80, 0x80, 0xff);
   case Color::PINK:
     return make_tuple(0xff, 0x14, 0x93, 0xff);
+  case Color::CRIMSON:
+    return make_tuple(0xDC, 0x14, 0x3C, 0xff);
   default:
     return make_tuple(0xff, 0xff, 0xff, 0xff);
   }
