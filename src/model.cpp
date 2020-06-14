@@ -51,7 +51,7 @@ void Model::UpdatePosition(Point &&point) {
   // Check if figure reached bottom during previous update.
   if (was_touched_) {
     ComputeScore(pile_.AddFigure(figure_.get()));
-    figure_.release();
+    figure_.reset();
     FigureGenerator();
     to_update = true;
     was_touched_ = false;
