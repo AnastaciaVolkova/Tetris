@@ -17,7 +17,7 @@ void Figure1::RotateCounter() {
 
 unique_ptr<Figure1> Figure1::make_square(Point &&p) {
   unique_ptr<Figure1> fig =
-      make_unique<Figure1>(Figure1(move(p), Color::CORNFLOWER_BLUE));
+      make_unique<Figure1>(Figure1(move(p), Color::kCornFlowerBlue));
   fig->forms_[State::k0] = {{0, 0, fig->color_},
                             {0, 1, fig->color_},
                             {1, 1, fig->color_},

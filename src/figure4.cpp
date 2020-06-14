@@ -43,7 +43,7 @@ void Figure4::RotateCounter() {
 
 unique_ptr<Figure4> Figure4::make_lhook(Point &&p) {
   unique_ptr<Figure4> fig =
-      make_unique<Figure4>(Figure4(move(p), Color::YELLOW));
+      make_unique<Figure4>(Figure4(move(p), Color::kYellow));
   fig->forms_[State::k0] = {{0, 0, fig->color_},
                             {0, 1, fig->color_},
                             {0, 2, fig->color_},
@@ -64,7 +64,8 @@ unique_ptr<Figure4> Figure4::make_lhook(Point &&p) {
 }
 
 unique_ptr<Figure4> Figure4::make_rhook(Point &&p) {
-  unique_ptr<Figure4> fig = make_unique<Figure4>(Figure4(move(p), Color::PINK));
+  unique_ptr<Figure4> fig =
+      make_unique<Figure4>(Figure4(move(p), Color::kPink));
   fig->forms_[State::k0] = {{1, 0, fig->color_},
                             {1, 1, fig->color_},
                             {1, 2, fig->color_},
@@ -86,7 +87,7 @@ unique_ptr<Figure4> Figure4::make_rhook(Point &&p) {
 
 unique_ptr<Figure4> Figure4::make_t(Point &&p) {
   unique_ptr<Figure4> fig =
-      make_unique<Figure4>(Figure4(move(p), Color::CRIMSON));
+      make_unique<Figure4>(Figure4(move(p), Color::kCrimson));
   fig->forms_[State::k0] = {{0, 2, fig->color_},
                             {1, 2, fig->color_},
                             {2, 2, fig->color_},

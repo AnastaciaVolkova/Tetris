@@ -23,7 +23,8 @@ void Figure2::Rotate() {
 void Figure2::RotateCounter() { Rotate(); }
 
 unique_ptr<Figure2> Figure2::make_ls(Point &&p) {
-  unique_ptr<Figure2> fig = make_unique<Figure2>(Figure2(move(p), Color::LIME));
+  unique_ptr<Figure2> fig =
+      make_unique<Figure2>(Figure2(move(p), Color::kLime));
   fig->forms_[State::k0] = {{0, 0, fig->color_},
                             {0, 1, fig->color_},
                             {1, 1, fig->color_},
@@ -37,7 +38,7 @@ unique_ptr<Figure2> Figure2::make_ls(Point &&p) {
 
 unique_ptr<Figure2> Figure2::make_rs(Point &&p) {
   unique_ptr<Figure2> fig =
-      make_unique<Figure2>(Figure2(move(p), Color::GREEN_YELLOW));
+      make_unique<Figure2>(Figure2(move(p), Color::kGreenYellow));
   fig->forms_[State::k0] = {{1, 0, fig->color_},
                             {0, 1, fig->color_},
                             {1, 1, fig->color_},
@@ -51,7 +52,7 @@ unique_ptr<Figure2> Figure2::make_rs(Point &&p) {
 }
 
 unique_ptr<Figure2> Figure2::make_stick(Point &&p) {
-  unique_ptr<Figure2> fig = make_unique<Figure2>(Figure2(move(p), Color::RED));
+  unique_ptr<Figure2> fig = make_unique<Figure2>(Figure2(move(p), Color::kRed));
   fig->forms_[State::k0] = {{0, 0, fig->color_},
                             {0, 1, fig->color_},
                             {0, 2, fig->color_},

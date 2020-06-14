@@ -4,16 +4,16 @@
 
 //! Contains figure color
 enum class Color {
-  BLACK,
-  BROWN,
-  RED,
-  YELLOW,
-  GREY,
-  PINK,
-  CRIMSON,
-  LIME,           //#00FF00
-  GREEN_YELLOW,   //#ADFF2F
-  CORNFLOWER_BLUE //#6495ED
+  kBlack,
+  kBrown,
+  kRed,
+  kYellow,
+  kGrey,
+  kPink,
+  kCrimson,
+  kLime,          //#00FF00
+  kGreenYellow,   //#ADFF2F
+  kCornFlowerBlue //#6495ED
 };
 
 //! Struct Point implements operations with points
@@ -27,7 +27,7 @@ struct Point {
   \param [in] yy y-coordinate
   \param [in] cc Color
   */
-  Point(int xx, int yy, Color color = Color::BLACK);
+  Point(int xx, int yy, Color color = Color::kBlack);
   Point &operator+=(const Point &ot);
   friend Point operator+(const Point &p1, const Point &p2);
   friend Point operator-(const Point &p1, const Point &p2);
