@@ -1,5 +1,6 @@
 # Tetris
 Capstone project for Udacity Nanodegree program [CppND](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213).Project implements the game [Tetris](https://en.wikipedia.org/wiki/Tetris).
+![Game field gif](https://github.com/AnastaciaVolkova/Tetris/blob/master/doc/out.gif)
 ## Gameplay
 Player should place the falling figures in a way that the pile on the bottom has as less as possible empty cells. When line in the pile has no empty cells, it is deleted. Player can rotate figures, accelerate their fall. Player fails, when at least one figure exaggerates the game field on the top. For one deleted line player receives 10 scores, for two deleted at once lines - 40, three - 80,  four - 160.
 - left arrow - move figure left
@@ -9,7 +10,7 @@ Player should place the falling figures in a way that the pile on the bottom has
 - space - accelerate falling of figure
 - q or esc - leave game
 
-[Game field](https://github.com/AnastaciaVolkova/Tetris/blob/master/doc/Game.png)
+![Game field](https://github.com/AnastaciaVolkova/Tetris/blob/master/doc/Game.png)
 
 # Dependencies for Running Locally
 - cmake >= 3.16.7
