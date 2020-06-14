@@ -20,28 +20,6 @@ void Controller::Run() {
   while (to_continue_) {
     size_t start = SDL_GetTicks();
     Commands command = Input();
-    switch (command) {
-    case Commands::kLeft:
-      // cout << "left" << endl;
-      break;
-    case Commands::kRight:
-      // cout << "right" << endl;
-      break;
-    case Commands::kRotate:
-      // cout << "rotate" << endl;
-      break;
-    case Commands::kRotate_ws:
-      // cout << "rotate ws" << endl;
-      break;
-    case Commands::kDrop:
-      // cout << "drop" << endl;
-      break;
-    case Commands::kNone:
-      // cout << "None" << endl;
-      break;
-    default:
-      to_continue_ = false;
-    }
     Update(command);
     Render(model_->GetOccupiedSpace());
     if ((SDL_GetTicks() - start) < target_frame_duration_)
@@ -83,6 +61,8 @@ void Controller::Update(Commands command) {
     return;
   switch (command) {
   case Commands::kRotate:
+    model_->RotateCounter();
+    break;
   case Commands::kRotate_ws:
     model_->Rotate();
     break;
@@ -95,6 +75,9 @@ void Controller::Update(Commands command) {
   case Commands::kDrop:
     // Increase figure speed.
     model_->Accelerate();
+    break;
+  case Commands::kExit:
+    to_continue_ = false;
     break;
   default:
     break;
