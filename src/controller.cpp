@@ -1,10 +1,8 @@
 #include "controller.hpp"
 #include <cmath>
-#include <iostream>
-
-using namespace std;
 
 using std::make_unique;
+using std::string;
 using std::to_string;
 using std::unique_ptr;
 using std::vector;
