@@ -6,7 +6,8 @@ using std::find_if;
 using std::vector;
 
 Pile::Pile(int width, int height)
-    : pile_space_(width), max_y_(height - 1), is_overloaded_(false) {}
+    : pile_space_(width), max_y_(height - 1), is_overloaded_(false),
+      pile_points_space_(0) {}
 
 bool Pile ::IsTouched(const Figure *figure) {
   bool is_touched = false;
