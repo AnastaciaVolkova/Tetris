@@ -57,6 +57,8 @@ Commands Controller::Input() {
 }
 
 void Controller::Update(Commands command) {
+  if (command == Commands::kExit)
+    to_continue_ = false;
   if (model_->IsGameOver())
     return;
   switch (command) {

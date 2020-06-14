@@ -52,9 +52,9 @@ void Model::UpdatePosition(Point &&point) {
     was_touched_ = false;
   }
   was_touched_ = pile_.IsTouched(figure_.get());
-  game_over_ = pile_.IsOverloaded();
   if ((to_update) && (!game_over_))
     UpdateSpace();
+  game_over_ = pile_.IsOverloaded();
 }
 
 void Model::RotateCounter() {
