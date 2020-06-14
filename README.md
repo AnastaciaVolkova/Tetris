@@ -61,4 +61,171 @@ Program is logically divided into three parts Model - View - Controller. Model s
 4. Classes encapsulate behavior (Appropriate data and functions are grouped into classes. Member data that is subject to an invariant is hidden from the user. State is accessed via member functions) - ./src/Model.hpp
 5. The project makes use of references in function declarations (At least two variables are defined as references, or two functions use pass-by-reference in the project code) ./src/model.hpp:26, ./src/figure.hpp:23
 
+# Class Description
+## Commands
+<pre> Class contains user commands.</pre>
+## Controller
+<pre> Class takes over interacting between game and its graphical representation.</pre>
+###  Controller::Controller(size_t target_frame_duration, size_t screen_height)
+<pre> Constructor</pre>
+_[in] target_frame_duration duration of game loop_
+_[in] screen_height height of the window_
+###  Controller::Run()
+<pre> Game loop</pre>
+###  Controller::Input()
+<pre> Get user command from keyboard.</pre>
+<pre> Key code</pre>
+###  Controller::Update(Commands command)
+<pre> Update game state</pre>
+_[in] command command from user_
+###  Controller::Render()
+<pre> Draw the figure</pre>
+_[in] space point to draw_
 
+## Model
+<pre> Class implements game model</pre>
+###  Model::Model()
+<pre> Constructor</pre>
+###  Model::GetOccupiedSpace()
+<pre> Receive points, which represent occupied by figure space</pre>
+<pre> returns points of occupied space</pre>
+###  Model::UpdatePosition(Point &&point)
+<pre> Update position of figure</pre>
+_[in] point difference between new position and previous one_
+###  Model::GetTimeFall()
+<pre> Get fall time (s)</pre>
+###  Model::RotateCounter()
+<pre> Rotate counter clock-wise figure</pre>
+###  Model::Rotate()
+<pre> Rotate clock-wise figure</pre>
+###  Model::Accelerate()
+<pre> Accelerate falling figure</pre>
+###  Model::GetScore()
+<pre> Get player score</pre>
+<pre> returns player score</pre>
+###  Model::IsGameOver()
+<pre> Check if game over</pre>
+<pre> returns true if game over has happened, otherwise returns false</pre>
+###  Model::GetGameFieldWidth()
+<pre> Get game field width</pre>
+<pre> returns game field width</pre>
+###  Model::GetGameFieldHeight()
+<pre> Get game field height</pre>
+<pre> returns game field height</pre>
+###  Model::CheckBoundaries()
+<pre> Check if figure is in boundaries of game field</pre>
+###  Model::UpdateFallingFigureSpace()
+<pre></pre>
+###  Model::FigureGenerator()
+<pre> Get new figure</pre>
+###  Model::ComputeScore(unsigned num_del_lines)
+<pre> Compute score</pre>
+_[in] num_del_lines number of deleted lines_
+## Pile
+<pre> Class implements bottom of the game field</pre>
+###  Pile::Pile(int width, int height)
+<pre> Default constructor</pre>
+_[in] width width of game field_
+_[in] height height of game field_
+###  Pile::IsTouched(const Figure *figure)
+<pre> Checks if figure touches bottom</pre>
+_[in] figure figure to check if touches pile_
+<pre> returns true if figure touches bottom</pre>
+###  Pile::AddFigure(const Figure *figure)
+<pre> Add figure to pile</pre>
+_[in] space points of figure_
+<pre> returns number of deleted lines</pre>
+###  Pile::GetPile()
+<pre> Get points of pile</pre>
+<pre> returns points of pile</pre>
+###  Pile::IsOverloaded()
+<pre> Get information on pipe overload</pre>
+<pre> returns true if pipe is overloaded, otherwise returns false</pre>
+###  Pile::ClearLine()
+<pre> Search for line to clear and clear it</pre>
+<pre> returns number of deleted lines</pre>
+###  Pile::ComputePilePointsSpace()
+<pre> Compute points of pile</pre>
+## Figure1
+<pre> Class Figure1 represents the game figure with rotation 1 state</pre>
+###  Figure1::Figure1(Point &&p, Color c)
+<pre> Constructor</pre>
+_[in] p point initial position of the figure_
+_[in] c color of the figure_
+###  Figure1::RotateCounter()
+<pre> Rotate counter clock-wise</pre>
+###  Figure1::Rotate()
+<pre> Rotate clock-wise</pre>
+###  Figure1::make_square(Point &&p)
+<pre> Makes left-s figure</pre>
+_[in] p point initial position of figure_
+<pre> returns Figure1 object, which is initialized as square</pre>
+## Figure2
+<pre> Class Figure2 represents the game figure with rotation 2 states</pre>
+###  Figure2::Figure2(Point &&p, Color c)
+<pre> Constructor</pre>
+_[in] p point initial position of the figure_
+_[in] c color of the figure_
+###  Figure2::RotateCounter()
+<pre> Rotate counter clock-wise</pre>
+###  Figure2::Rotate()
+<pre> Rotate clock-wise</pre>
+###  Figure2::make_ls(Point &&p)
+<pre> Makes left-s figure</pre>
+_[in] p point initial position of figure_
+<pre> returns Figure2 object, which is initialized as left-s figure</pre>
+###  Figure2::make_rs(Point &&p)
+<pre> Make right-s figure</pre>
+_[in] p point initial position of figure_
+<pre> returns Figure2 object, which is initialized as right-s figure</pre>
+###  Figure2::make_stick(Point &&p)
+<pre> Make stick figure</pre>
+_[in] p point initial position of figure_
+<pre> returns Figure2 object, which is initialized as stick figure</pre>
+## Figure4
+<pre> Class Figure4 represents the game figure with rotation 4 states</pre>
+###  Figure4::Figure4(Point &&p, Color c)
+<pre> Constructor</pre>
+_[in] p point initial position of the figure_
+_[in] c color of the figure_
+###  Figure4::RotateCounter()
+<pre> Rotate counter clock-wise</pre>
+###  Figure4::Rotate()
+<pre> Rotate clock-wise</pre>
+###  Figure4::make_lhook(Point &&p)
+<pre> Makes left hook figure</pre>
+_[in] p point initial position of figure_
+<pre> returns Figure4 object, which is initialized as left-hook figure</pre>
+###  Figure4::make_rhook(Point &&p)
+<pre> Make right hook figure</pre>
+_[in] p point initial position of figure_
+<pre> returns Figure4 object, which is initialized as right-hook figure</pre>
+###  Figure4::make_t(Point &&p)
+<pre> Make T figure</pre>
+_[in] p point initial position of figure_
+<pre> returns Figure4 object, which is initialized as T figure</pre>
+## View
+<pre> Provides graphical part of the game.</pre>
+## Color
+<pre> Contains figure color</pre>
+###  Color::Point()
+<pre> Struct Point implements operations with points</pre>
+###  Color::Point(int xx, int yy, Color color = Color::kBlack)
+<pre> Constructor</pre>
+_[in] xx x-coordinate_
+_[in] yy y-coordinate_
+_[in] cc Color_
+###  Color::GetRgba()
+<pre> Get tuple of rgba</pre>
+###  View::View()
+<pre> Constructor</pre>
+_[in] screen_width width of the screen_
+_[in] screen_height height of the screen_
+_[in] cell_size size of quadratic cell_
+###  View::Render(const std::vector<Point> &x, const std::string &title)
+<pre> Draw the points</pre>
+_[in] x points to draw_
+_[in] title window title_
+###  View::GetHeight()
+<pre> Getter for height of the game field</pre>
+<pre> returns height of the game field</pre>
