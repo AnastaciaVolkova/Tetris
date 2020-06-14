@@ -7,6 +7,7 @@
 #include <iostream>
 
 using std::make_unique;
+using std::max_element;
 using std::mt19937;
 using std::random_device;
 using std::uniform_int_distribution;
@@ -110,8 +111,13 @@ void Model::UpdateSpace() {
 void Model::FigureGenerator() {
   if (next_figure_ != nullptr) {
     figure_ = move(next_figure_);
-    figure_->SetPosition({0, 0});
+    // Find the lowest point of the figure.
+    auto fig_max_coor_y =
+        max_element(figure_->GetForm().begin(), figure_->GetForm().end(),
+                    [](auto a, auto b) { return a.y < b.y; });
+    figure_->SetPosition({4, -fig_max_coor_y->y});
   }
+
   int d = dist_(random_engine_);
   switch (d) {
   case 0:
