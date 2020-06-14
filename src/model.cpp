@@ -33,6 +33,7 @@ Model::Model(Controller *controller, int right_boundary, int bottom_boundary)
 vector<const vector<Point> *> Model::GetOccupiedSpace() {
   vector<const vector<Point> *> space;
   space.push_back(&space_);
+  space.push_back(&next_figure_space_);
   return space;
 };
 
@@ -106,10 +107,10 @@ void Model::UpdateSpace() {
     iv += figure_->GetPosition();
     space_.push_back(iv);
   }
-  for (auto iv : next_figure_->GetForm()) {
+  /*for (auto iv : next_figure_->GetForm()) {
     iv += next_figure_->GetPosition();
     space_.push_back(iv);
-  }
+  }*/
   vector<Point> p = pile_.GetPile();
   copy(p.begin(), p.end(), std::back_inserter(space_));
 }
@@ -149,6 +150,12 @@ void Model::FigureGenerator() {
     break;
   default:
     break;
+  }
+
+  next_figure_space_.clear();
+  for (auto it : next_figure_->GetForm()) {
+    it += next_figure_->GetPosition();
+    next_figure_space_.push_back(it);
   }
   time_fall_ = kFallTime;
 }

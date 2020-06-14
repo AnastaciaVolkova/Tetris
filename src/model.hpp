@@ -71,6 +71,10 @@ private:
 
   // Points to draw.
   std::vector<Point> space_;
+
+  // Points of next figure to draw.
+  std::vector<Point> next_figure_space_;
+
   // Time, which needs figure to reach the bottom (s).
   unsigned time_fall_;
   const int right_boundary_, bottom_boundary_;
