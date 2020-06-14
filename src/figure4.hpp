@@ -22,6 +22,7 @@ public:
 
   //! Rotate clock-wise
   void Rotate() override;
+
   //! Makes left hook figure
   /*!
   \param [in] p point initial position of figure
@@ -33,6 +34,7 @@ public:
   \param [in] p point initial position of figure
   \return Figure4 object, which is initialized as right-hook figure
   */
+
   static std::unique_ptr<Figure4> make_rhook(Point &&p);
 
   //! Make T figure

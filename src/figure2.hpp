@@ -29,6 +29,7 @@ public:
   \return Figure2 object, which is initialized as left-s figure
   */
   static std::unique_ptr<Figure2> make_ls(Point &&p);
+
   //! Make right-s figure
   /*!
   \param [in] p point initial position of figure
