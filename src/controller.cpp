@@ -21,7 +21,7 @@ void Controller::Run() {
     size_t start = SDL_GetTicks();
     Commands command = Input();
     Update(command);
-    Render(model_->GetOccupiedSpace());
+    Render();
     if ((SDL_GetTicks() - start) < target_frame_duration_)
       SDL_Delay(target_frame_duration_ - (SDL_GetTicks() - start));
   }
@@ -94,7 +94,8 @@ void Controller::Update(Commands command) {
   }
 }
 
-Commands Controller::Render(const std::vector<Point> &space) {
+Commands Controller::Render() {
+  vector<Point> space = model_->GetOccupiedSpace();
   if (model_->IsGameOver())
     view_->Render(space, "Game Over");
   else
