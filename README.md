@@ -53,73 +53,12 @@ Program is logically divided into three parts Model - View - Controller. Model s
 *Files and class of View*:
 - view.hpp, view.cpp - class View is graphical representation of the game. It create main game window, draw objects, which are provided by controller, process keyboard commands.
 
-# Classes descriptions
-## Commands
-<pre>Class contains user commands.</pre>
-## Controller
-<pre>Class takes over interacting between game and its graphical representation.</pre>
-### Controller::Controller(Model &model, View &view)
-<pre>Constructor</pre>
-- [in,out] model reference to model of game
-- [in,out] view reference to graphical representation of view
-### Controller::Run(size_t target_frame_duration)
-<pre>Game loop</pre>
-- [in] target_frame_duration duration of game loop (game frame)
-### Controller::Input(size_t target_frame_duration)
-<pre>Get user command from keyboard.</pre>
--[in] target_frame_duration duration of game loop (game frame)
-returns Key code
-### Controller::Render(std::vector<Point> space)
-<pre>Draw the figure</pre>
--[in] space point to draw
 
-## Point
-Struct Point implements operations with points
+# The following rubric points are addressed
+1. Class constructors utilize member initialization lists (All class members that are set to argument values are initialized through member initialization lists) -  ./src/pile.cpp:8
+2. Derived class functions override virtual base class functions (One member function in an inherited class overrides a virtual base class member function) - src/Figure2.hpp:24, src/Figure2.cpp:10
+3. Classes use appropriate access specifiers for class members (All class data members are explicitly specified as public, protected, or private.) - src/Figure.hpp:11 and src/Figure1.hpp:10
+4. Classes encapsulate behavior (Appropriate data and functions are grouped into classes. Member data that is subject to an invariant is hidden from the user. State is accessed via member functions) - ./src/Model.hpp
+5. The project makes use of references in function declarations (At least two variables are defined as references, or two functions use pass-by-reference in the project code) ./src/model.hpp:26, ./src/figure.hpp:23
 
-## Figure
-<pre>Class Figure represents the game figure</pre>
-### Figure::Figure()
-<pre>Default constructor</pre>
-### Figure::Figure(Point &&p)
-<pre>Constructor</pre>
-- [in] p point initial position of figure
-### Figure::GetForm()
-<pre>Get form of the figure</pre>
-returns vector with point of figure form
-### Figure::GetPosition()
-<pre>Get current position of figure</pre>
-### Figure::SetPosition(Point p)
-<pre>Set current position of figure</pre>
-- [in] p position of figure
-
-## View
-<pre>Provides graphical part of the game.</pre>
-### View::View()
-<pre>Constructor</pre>
-- [in] screen_width width of screen
-- [in] screen_height height of screen
-- [in] grid_width width of element to draw
-- [in] grid_height height of element to draw
-### View::SetController(Controller *controller)
-<pre>Provide the controller for interaction with it</pre>
-- [in,out] controller controller for interaction
-### View::Render(std::vector<Point> x)
-<pre>Draw the points</pre>
-- [in] x points to draw
-
-## Model
-<pre>Class implements game model</pre>
-### Model::Model()
-<pre>Constructor</pre>
-### Model::SetController(Controller *controller)
-<pre>Setter for controller field</pre>
-- [in,out] controller pointer for manipulation
-### Model::GetOccupiedSpace()
-<pre>Receive points, which represent occupied by figure space</pre>
-- returns points of occupied space
-### Model::UpdatePosition(Point &point)
-<pre>Update position of figure</pre>
-- [in] point new position
-### Model::GetTimeFall()
-<pre>Get fall time (s)</pre>
 
