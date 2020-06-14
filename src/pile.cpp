@@ -35,8 +35,6 @@ unsigned Pile::AddFigure(const Figure *figure) {
     p += figure->GetPosition();
     if ((max_y_ - p.y + 1) > pile_space_[p.x].size())
       pile_space_[p.x].resize((max_y_ - p.y + 1), false);
-    if (pile_space_[p.x][max_y_ - p.y] == true)
-      throw std::runtime_error("Error pile: cell is already occupied");
     pile_space_[p.x][max_y_ - p.y] = true;
   }
   return ClearLine();
