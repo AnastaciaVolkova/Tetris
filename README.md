@@ -39,17 +39,19 @@ Player should place the falling figures in a way that the pile on the bottom has
 
 # Project description
 Program is logically divided into three parts Model - View - Controller. Model stands for Gameplay. View represents graphically game. View knows quite nothing about game and receives commands from Controller. Controller implements interface between model (game) and view (SDL). In case view sdl is changed with another graphical library (QT eg) only few changes should be done in Controller.
+<br>
 *Files and classes of Model:*
--- model.cpp model.hpp (class Model) - main gameplay is done here. Creates and uses figures, creates and uses class Pile, provides points to draw to Controller. Knows nothing about graphic libraries.
--- figure.cpp figure.hpp (Abstract class Figure)  - declare abstract class, which represents figure. Figure has  forms. Form is the set of points with definite color. Figure has several forms, as it is rotated.
--- figure1.cpp, figure1.hpp - class Figure1 inherits abstract class Figure. Figure1 is a figure which is central-symmetrical and that’s why has only one form.
--- figure2.cpp, figure2.hpp - class Figure2 inherits abstract class Figure. Figure2 is a figure which is horizontally symmetric and has two forms.
--- figure4.cpp, figure4.hpp - class Figure4 inherits abstract class Figure. Figure4 is figure which has four different rotational forms.
--- pile.cpp, pile.hpp - class Pile implements Pile of figure on the bottom. Main functionality is to accept new figures and check if there are lines to be deleted.
+- model.cpp model.hpp (class Model) - main gameplay is done here. Creates and uses figures, creates and uses class Pile, provides points to draw to Controller. Knows nothing about graphic libraries.
+- figure.cpp figure.hpp (Abstract class Figure)  - declare abstract class, which represents figure. Figure has  forms. Form is the set of points with definite color. Figure has several forms, as it is rotated.
+- figure1.cpp, figure1.hpp - class Figure1 inherits abstract class Figure. Figure1 is a figure which is central-symmetrical and that’s why has only one form.
+- figure2.cpp, figure2.hpp - class Figure2 inherits abstract class Figure. Figure2 is a figure which is horizontally symmetric and has two forms.
+- figure4.cpp, figure4.hpp - class Figure4 inherits abstract class Figure. Figure4 is figure which has four different rotational forms.
+- pile.cpp, pile.hpp - class Pile implements Pile of figure on the bottom. Main functionality is to accept new figures and check if there are lines to be deleted.</br>
 *Files and class of Controller*:
--- point.cpp point.hpp - class Point implements 2D point with colors. Is used actively by Figure and Pile.
--- controller.hpp, controller.cpp - class Controller uses methods of View and Model classes. It organizes Input-Update-Render loop, create object of classes View and Model. Class Controller processes commands from player.
--- view.hpp, view.cpp - class View is graphical representation of the game. It create main game window, draw objects, which are provided by controller, process keyboard commands.
+- point.cpp point.hpp (class Point) - class Point implements 2D point with colors. Is used actively by Figure and Pile.
+- controller.hpp, controller.cpp (class Point) - class Controller uses methods of View and Model classes. It organizes Input-Update-Render loop, create object of classes View and Model. Class Controller processes commands from player.</br>
+*Files and class of View*:
+- view.hpp, view.cpp - class View is graphical representation of the game. It create main game window, draw objects, which are provided by controller, process keyboard commands.
 
 # Classes descriptions
 ## Commands
