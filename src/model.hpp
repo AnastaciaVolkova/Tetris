@@ -11,11 +11,6 @@ class Controller;
 class Model {
 public:
   //! Constructor
-  /*!
-  \param [in,out] controller controller for manipulation
-  \param [in] right_boundary right boundary of the game field
-  \param [in] bottom_boundary bottom boundry of the game field
-  */
   Model();
 
   //! Receive points, which represent occupied by figure space

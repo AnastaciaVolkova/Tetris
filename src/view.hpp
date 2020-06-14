@@ -14,10 +14,9 @@ public:
   \param [in] screen_width width of the screen
   \param [in] screen_height height of the screen
   \param [in] cell_size size of quadratic cell
-  \param [in,out] controller controller for interaction
   */
-  View(const std::size_t screen_width, const std::size_t screen_height,
-       const std::size_t cell_size);
+  View(std::size_t screen_width, std::size_t screen_height,
+       std::size_t cell_size);
 
   ~View();
 

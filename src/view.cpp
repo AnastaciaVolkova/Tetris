@@ -3,11 +3,14 @@
 #include <string>
 #include <tuple>
 
+using std::cerr;
+using std::get;
+using std::size_t;
 using std::string;
 using std::tuple;
+using std::vector;
 
-View::View(const std::size_t screen_height, const std::size_t screen_width,
-           const std::size_t cell_size)
+View::View(size_t screen_height, size_t screen_width, size_t cell_size)
     : game_field_height_(screen_height), game_field_width_(screen_width),
       cell_size_(cell_size), border_width_(cell_size),
       info_field_width_(screen_width / game_info_width_proportion_),
@@ -17,8 +20,8 @@ View::View(const std::size_t screen_height, const std::size_t screen_width,
       window_height_(screen_height) {
   // Initialize SDL
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-    std::cerr << "SDL could not initialize.\n";
-    std::cerr << "SDL_Error: " << SDL_GetError() << "\n";
+    cerr << "SDL could not initialize.\n";
+    cerr << "SDL_Error: " << SDL_GetError() << "\n";
   }
 
   // Create Window
@@ -27,19 +30,19 @@ View::View(const std::size_t screen_height, const std::size_t screen_width,
                        window_width_, window_height_, SDL_WINDOW_SHOWN);
 
   if (nullptr == sdl_window_) {
-    std::cerr << "Window could not be created.\n";
-    std::cerr << " SDL_Error: " << SDL_GetError() << "\n";
+    cerr << "Window could not be created.\n";
+    cerr << " SDL_Error: " << SDL_GetError() << "\n";
   }
 
   // Create renderer
   sdl_renderer_ = SDL_CreateRenderer(sdl_window_, -1, SDL_RENDERER_ACCELERATED);
   if (nullptr == sdl_renderer_) {
-    std::cerr << "Renderer could not be created.\n";
-    std::cerr << "SDL_Error: " << SDL_GetError() << "\n";
+    cerr << "Renderer could not be created.\n";
+    cerr << "SDL_Error: " << SDL_GetError() << "\n";
   }
 }
 
-void View::Render(const std::vector<Point> &x, const string &title) {
+void View::Render(const vector<Point> &x, const string &title) {
   SDL_Rect block;
   block.w = cell_size_;
   block.h = cell_size_;
@@ -72,9 +75,8 @@ void View::Render(const std::vector<Point> &x, const string &title) {
   // Render block
   for (const auto &i : x) {
     auto color = i.GetRgba();
-    SDL_SetRenderDrawColor(sdl_renderer_, std::get<0>(color),
-                           std::get<1>(color), std::get<2>(color),
-                           std::get<3>(color));
+    SDL_SetRenderDrawColor(sdl_renderer_, get<0>(color), get<1>(color),
+                           get<2>(color), get<3>(color));
     block.x = i.x * block.w;
     block.y = i.y * block.h;
     SDL_RenderFillRect(sdl_renderer_, &block);

@@ -1,10 +1,4 @@
 #include "controller.hpp"
-#include "model.hpp"
-#include "view.hpp"
-
-#include <iostream>
-
-using namespace std;
 
 int main() {
   constexpr size_t kFramesPerSecond{60};
