@@ -7,8 +7,9 @@ Player should place the falling figures in a way that the pile on the bottom has
 - up arrow - rotate counter clock wise
 - up down - rotate clock wise
 - space - accelerate falling of figure
-- q, esc - leave game
-![Game field](https://github.com/AnastaciaVolkova/Tetris/blob/master/doc/Game.png)
+- q or esc - leave game
+<br>
+[Game field](https://github.com/AnastaciaVolkova/Tetris/blob/master/doc/Game.png)
 # Dependencies for Running Locally
 - cmake >= 3.16.7
   - All OSes: [click here for installation instructions](https://cmake.org/install/)
