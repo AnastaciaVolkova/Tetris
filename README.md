@@ -38,8 +38,7 @@ Player should place the falling figures in a way that the pile on the bottom has
 - framework is inspired from [Udacity Snake](https://github.com/udacity/CppND_Capstone_Snake_Game)
 
 # Project description
-
-<pre>Program is logically divided into three parts Model - View - Controller. Model stands for Gameplay. View represents graphically game. View knows quite nothing about game and receives commands from Controller. Controller implements interface between model (game) and view (SDL). In case view sdl is changed with another graphical library (QT eg) only few changes should be done in Controller.</pre>
+Program is logically divided into three parts Model - View - Controller. Model stands for Gameplay. View represents graphically game. View knows quite nothing about game and receives commands from Controller. Controller implements interface between model (game) and view (SDL). In case view sdl is changed with another graphical library (QT eg) only few changes should be done in Controller.
 *Files and classes of Model:*
 -- model.cpp model.hpp (class Model) - main gameplay is done here. Creates and uses figures, creates and uses class Pile, provides points to draw to Controller. Knows nothing about graphic libraries.
 -- figure.cpp figure.hpp (Abstract class Figure)  - declare abstract class, which represents figure. Figure has  forms. Form is the set of points with definite color. Figure has several forms, as it is rotated.
