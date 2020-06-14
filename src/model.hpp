@@ -48,12 +48,21 @@ public:
   */
   unsigned GetScore();
 
+  //! Check if game over
+  /*!
+  \return returns true if game over has happened, otherwise returns false
+  */
+  bool IsGameOver();
+
 private:
   const int kFallTime = 10;
   const int kMinFallTime = 1;
   Controller *controller_;
   std::unique_ptr<Figure> figure_;
   std::unique_ptr<Figure> next_figure_;
+
+  // Flag of game over.
+  bool game_over_;
 
   // Random engine for figure generator.
   std::mt19937 random_engine_;

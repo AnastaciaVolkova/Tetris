@@ -10,15 +10,14 @@ using std::vector;
 
 Controller::Controller(size_t target_frame_duration, size_t screen_height)
     : target_frame_duration_(target_frame_duration),
-      cell_size_(screen_height / height_cells_number_) {
+      cell_size_(screen_height / height_cells_number_), to_continue_(true) {
   model_ = make_unique<Model>(this, width_cells_number_, height_cells_number_);
   view_ = make_unique<View>(screen_height, screen_height / proportion_,
                             cell_size_, this);
 };
 
 void Controller::Run() {
-  bool to_continue = true;
-  while (to_continue) {
+  while (to_continue_) {
     size_t start = SDL_GetTicks();
     Commands command = Input();
     switch (command) {
@@ -41,7 +40,7 @@ void Controller::Run() {
       // cout << "None" << endl;
       break;
     default:
-      to_continue = false;
+      to_continue_ = false;
     }
     Update(command);
     Render(model_->GetOccupiedSpace());
@@ -80,6 +79,8 @@ Commands Controller::Input() {
 }
 
 void Controller::Update(Commands command) {
+  if (model_->IsGameOver())
+    return;
   switch (command) {
   case Commands::kRotate:
   case Commands::kRotate_ws:
@@ -109,5 +110,8 @@ void Controller::Update(Commands command) {
 }
 
 Commands Controller::Render(const std::vector<Point> &space) {
-  view_->Render(space, string("Score: ") + to_string(model_->GetScore()));
+  if (model_->IsGameOver())
+    view_->Render(space, "Game Over");
+  else
+    view_->Render(space, string("Score: ") + to_string(model_->GetScore()));
 };

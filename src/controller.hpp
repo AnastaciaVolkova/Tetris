@@ -35,6 +35,8 @@ private:
   // Distance, which the figure passes within several frames (pixels)
   size_t distance_x_, distance_y_;
 
+  bool to_continue_;
+
   //! Get user command from keyboard.
   /*!
     \return Key code

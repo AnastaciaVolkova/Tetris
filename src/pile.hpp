@@ -25,7 +25,7 @@ public:
   \param [in] space points of figure
   \return returns number of deleted lines
   */
-  int AddFigure(const Figure *figure);
+  unsigned AddFigure(const Figure *figure);
 
   //! Get points of pile
   /*!
@@ -33,9 +33,19 @@ public:
   */
   std::vector<Point> GetPile();
 
+  //! Get information on pipe overload
+  /*!
+  \return returns true if pipe is overloaded, otherwise returns false
+  */
+  bool IsOverloaded();
+
 private:
   std::vector<std::vector<bool>> pile_space_;
   int max_y_;
+
+  // Flag, which indicates, wheather pipe is overload.
+  bool is_overloaded_;
+
   //! Search for line to clear and clear it
   /*!
   \return returns number of deleted lines

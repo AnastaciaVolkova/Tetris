@@ -16,7 +16,8 @@ using std::vector;
 Model::Model(Controller *controller, int right_boundary, int bottom_boundary)
     : controller_(controller), right_boundary_(right_boundary),
       bottom_boundary_(bottom_boundary),
-      pile_(right_boundary_, bottom_boundary_), was_touched_(false), score_(0) {
+      pile_(right_boundary_, bottom_boundary_), was_touched_(false), score_(0),
+      game_over_(false) {
 
   // Ignite random engine.
   random_device random_device;
@@ -51,7 +52,8 @@ void Model::UpdatePosition(Point &&point) {
     was_touched_ = false;
   }
   was_touched_ = pile_.IsTouched(figure_.get());
-  if (to_update)
+  game_over_ = pile_.IsOverloaded();
+  if ((to_update) && (!game_over_))
     UpdateSpace();
 }
 
@@ -153,3 +155,5 @@ void Model::ComputeScore(unsigned num_deleted_lines) {
   if (num_deleted_lines != 0)
     score_ += 10 * (1 << num_deleted_lines);
 }
+
+bool Model::IsGameOver() { return game_over_; }

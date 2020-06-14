@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <stdexcept>
 
+using std::find_if;
 using std::vector;
 
 Pile::Pile(int width, int height) : pile_space_(width), max_y_(height - 1) {}
@@ -17,10 +18,18 @@ bool Pile ::IsTouched(const Figure *figure) {
     });
     is_touched = is_touched || (touch != pile.end()) || (c.y >= max_y_);
   }
+  if (is_touched) {
+    // Find out if points with negative y coordinate exist.
+    auto a = find_if(
+        figure->GetForm().begin(), figure->GetForm().end(),
+        [&](const auto a) { return (a.y + figure->GetPosition().y) < 0; });
+    if (a != figure->GetForm().end())
+      is_overloaded_ = true;
+  }
   return is_touched;
 }
 
-int Pile::AddFigure(const Figure *figure) {
+unsigned Pile::AddFigure(const Figure *figure) {
   vector<Point> point = figure->GetForm();
   for (auto p : point) {
     p += figure->GetPosition();
@@ -66,3 +75,5 @@ unsigned Pile::ClearLine() {
   }
   return num_lines;
 }
+
+bool Pile::IsOverloaded() { return is_overloaded_; };
