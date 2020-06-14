@@ -69,10 +69,6 @@ void View::Render(const std::vector<Point> &x, const string &title) {
   SDL_SetRenderDrawColor(sdl_renderer_, 0x1e, 0x1e, 0x1e, 0xff);
   SDL_RenderFillRect(sdl_renderer_, &field);
 
-  // Clear screen
-  // SDL_SetRenderDrawColor(sdl_renderer_, 0x1E, 0x1E, 0x1E, 0xFF);
-  // SDL_RenderClear(sdl_renderer_);
-
   // Render block
   for (const auto &i : x) {
     auto color = i.GetRgba();

@@ -26,14 +26,11 @@ private:
   std::unique_ptr<Model> model_;
   std::unique_ptr<View> view_;
   size_t target_frame_duration_;
-  const size_t proportion_ = 2;
-  const size_t height_cells_number_ = 20;
-  const size_t width_cells_number_ = height_cells_number_ / proportion_;
-  const size_t cell_size_;
+  size_t cell_size_;
   float speed_;                   // Speed of figure (s)
   const float k_max_speed_ = 0.5; // Maximum speed of dropping figure (s)
   // Distance, which the figure passes within several frames (pixels)
-  size_t distance_x_, distance_y_;
+  size_t distance_y_;
 
   bool to_continue_;
 

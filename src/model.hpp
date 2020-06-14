@@ -16,7 +16,7 @@ public:
   \param [in] right_boundary right boundary of the game field
   \param [in] bottom_boundary bottom boundry of the game field
   */
-  Model(int right_boundary, int bottom_boundary);
+  Model();
 
   //! Receive points, which represent occupied by figure space
   /*!
@@ -54,6 +54,18 @@ public:
   */
   bool IsGameOver();
 
+  //! Get game field width
+  /*!
+  \return returns game field width
+  */
+  int GetGameFieldWidth();
+
+  //! Get game field height
+  /*!
+  \return returns game field height
+  */
+  int GetGameFieldHeight();
+
 private:
   const int kFallTime = 10;
   const int kMinFallTime = 1;
@@ -76,7 +88,9 @@ private:
 
   // Time, which needs figure to reach the bottom (s).
   unsigned time_fall_;
-  const int right_boundary_, bottom_boundary_;
+
+  // Game field parameters.
+  const int kGameFieldWidth_ = 10, kGameFieldHeight_ = 20;
 
   // Flag is pile was touched
   bool was_touched_;

@@ -1,4 +1,5 @@
 #include "controller.hpp"
+#include <cmath>
 #include <iostream>
 
 using namespace std;
@@ -9,11 +10,12 @@ using std::unique_ptr;
 using std::vector;
 
 Controller::Controller(size_t target_frame_duration, size_t screen_height)
-    : target_frame_duration_(target_frame_duration),
-      cell_size_(screen_height / height_cells_number_), to_continue_(true) {
-  model_ = make_unique<Model>(width_cells_number_, height_cells_number_);
-  view_ =
-      make_unique<View>(screen_height, screen_height / proportion_, cell_size_);
+    : target_frame_duration_(target_frame_duration), to_continue_(true) {
+  model_ = make_unique<Model>();
+  cell_size_ = static_cast<size_t>(
+      round(static_cast<float>(screen_height) / model_->GetGameFieldHeight()));
+  view_ = make_unique<View>(
+      screen_height, cell_size_ * model_->GetGameFieldWidth(), cell_size_);
 };
 
 void Controller::Run() {

@@ -13,10 +13,9 @@ using std::random_device;
 using std::uniform_int_distribution;
 using std::vector;
 
-Model::Model(int right_boundary, int bottom_boundary)
-    : right_boundary_(right_boundary), bottom_boundary_(bottom_boundary),
-      pile_(right_boundary_, bottom_boundary_), was_touched_(false), score_(0),
-      game_over_(false) {
+Model::Model()
+    : pile_(kGameFieldWidth_, kGameFieldHeight_), was_touched_(false),
+      score_(0), game_over_(false) {
 
   // Ignite random engine.
   random_device random_device;
@@ -95,7 +94,7 @@ bool Model::CheckBoundaries() {
     });
     inside_boundaries =
         inside_boundaries &&
-        ((a.x >= 0) && (a.x < right_boundary_) && (a.y < bottom_boundary_)) &&
+        ((a.x >= 0) && (a.x < kGameFieldWidth_) && (a.y < kGameFieldHeight_)) &&
         (common == pile.end());
   }
   return inside_boundaries;
@@ -162,3 +161,7 @@ void Model::ComputeScore(unsigned num_deleted_lines) {
 }
 
 bool Model::IsGameOver() { return game_over_; }
+
+int Model::GetGameFieldWidth() { return kGameFieldWidth_; }
+
+int Model::GetGameFieldHeight() { return kGameFieldHeight_; }
