@@ -102,24 +102,24 @@ def main():
             i += 1
 
     with open("results.txt", "w") as fid:
-        fid.write(os.path.basename(sys.argv[1] + "\n"))
+        # fid.write(os.path.basename(sys.argv[1] + "\n"))
         for cls in classes:
-            fid.write(cls.name + "\n")
-            fid.write(cls.description + "\n")
+            fid.write("##" + cls.name + "\n")
+            fid.write("<pre>" + cls.description + "</pre>" + "\n")
             typos = GetTypos(cls.description)
             if len(typos):
                 print(typos)
             for m in cls.methods:
-                fid.write("{0}::{1}\n".format(cls.name, m.name))
-                fid.write(m.description + "\n")
+                fid.write("### {0}::{1}\n".format(cls.name, m.name))
+                fid.write("<pre>" + m.description + "</pre>" + "\n")
                 typos = GetTypos(m.description)
                 if len(typos):
                     print(typos)
                 for p in m.params:
                     if type(p).__name__ == "Params":
-                        fid.write("{0} {1} {2}\n".format(p.name, p.in_out, p.description))
+                        fid.write("_{0} {1} {2}_\n".format(p.name, p.in_out, p.description))
                     else:
-                        fid.write(p.description + "\n")
+                        fid.write("<pre>" + p.description + "</pre>" + "\n")
                     typos = GetTypos(p.description)
                     if len(typos):
                         print(typos)
