@@ -15,7 +15,8 @@ using std::vector;
 
 Model::Model()
     : pile_(kGameFieldWidth_, kGameFieldHeight_), was_touched_(false),
-      score_(0), game_over_(false) {
+      score_(0), game_over_(false), time_fall_(kFallTime), figure_(nullptr),
+      next_figure_(nullptr) {
 
   // Ignite random engine.
   random_device random_device;
