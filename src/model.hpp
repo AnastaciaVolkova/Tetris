@@ -69,8 +69,8 @@ private:
   // Distribution for figure generator.
   std::uniform_int_distribution<int> dist_;
 
-  // Points to draw.
-  std::vector<Point> space_;
+  // Points of falling figure.
+  std::vector<Point> falling_figure_space_;
 
   // Points of next figure to draw.
   std::vector<Point> next_figure_space_;
@@ -91,8 +91,8 @@ private:
   //! Check if figure is in boundaries of game field
   bool CheckBoundaries();
 
-  // Update point to draw.
-  void UpdateSpace();
+  // Update points to draw of main figure.
+  void UpdateFallingFigureSpace();
 
   //! Get new figure
   void FigureGenerator();

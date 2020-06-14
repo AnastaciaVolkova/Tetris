@@ -37,17 +37,12 @@ unsigned Pile::AddFigure(const Figure *figure) {
       pile_space_[p.x].resize((max_y_ - p.y + 1), false);
     pile_space_[p.x][max_y_ - p.y] = true;
   }
-  return ClearLine();
+  unsigned num_deleted_lines = ClearLine();
+  ComputePilePointsSpace(); // Update space points of pile.
+  return num_deleted_lines;
 }
 
-vector<Point> Pile::GetPile() {
-  vector<Point> piles;
-  for (int c = 0; c < pile_space_.size(); c++)
-    for (int r = 0; r < pile_space_[c].size(); r++)
-      if (pile_space_[c][r])
-        piles.push_back(Point(c, max_y_ - r, Color::GREY));
-  return piles;
-}
+vector<Point> &Pile::GetPile() { return pile_points_space_; }
 
 unsigned Pile::ClearLine() {
   unsigned num_lines = 0;
@@ -75,3 +70,11 @@ unsigned Pile::ClearLine() {
 }
 
 bool Pile::IsOverloaded() { return is_overloaded_; };
+
+void Pile::ComputePilePointsSpace() {
+  pile_points_space_.clear();
+  for (int c = 0; c < pile_space_.size(); c++)
+    for (int r = 0; r < pile_space_[c].size(); r++)
+      if (pile_space_[c][r])
+        pile_points_space_.push_back(Point(c, max_y_ - r, Color::GREY));
+}

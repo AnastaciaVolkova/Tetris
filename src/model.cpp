@@ -27,13 +27,14 @@ Model::Model(Controller *controller, int right_boundary, int bottom_boundary)
   // Generate first figures.
   FigureGenerator(); // First on game field.
   FigureGenerator(); // Next of first figure.
-  UpdateSpace();
+  UpdateFallingFigureSpace();
 };
 
 vector<const vector<Point> *> Model::GetOccupiedSpace() {
   vector<const vector<Point> *> space;
-  space.push_back(&space_);
+  space.push_back(&falling_figure_space_);
   space.push_back(&next_figure_space_);
+  space.push_back(&pile_.GetPile());
   return space;
 };
 
@@ -58,7 +59,7 @@ void Model::UpdatePosition(Point &&point) {
   }
   was_touched_ = pile_.IsTouched(figure_.get());
   if ((to_update) && (!game_over_))
-    UpdateSpace();
+    UpdateFallingFigureSpace();
   game_over_ = pile_.IsOverloaded();
 }
 
@@ -69,7 +70,7 @@ void Model::RotateCounter() {
   if (!CheckBoundaries())
     figure_->Rotate();
   else
-    UpdateSpace();
+    UpdateFallingFigureSpace();
 }
 
 void Model::Rotate() {
@@ -79,7 +80,7 @@ void Model::Rotate() {
   if (!CheckBoundaries())
     figure_->RotateCounter();
   else
-    UpdateSpace();
+    UpdateFallingFigureSpace();
 }
 
 void Model::Accelerate() { time_fall_ = kMinFallTime; }
@@ -101,18 +102,12 @@ bool Model::CheckBoundaries() {
   return inside_boundaries;
 }
 
-void Model::UpdateSpace() {
-  space_.clear();
+void Model::UpdateFallingFigureSpace() {
+  falling_figure_space_.clear();
   for (auto iv : figure_->GetForm()) {
     iv += figure_->GetPosition();
-    space_.push_back(iv);
+    falling_figure_space_.push_back(iv);
   }
-  /*for (auto iv : next_figure_->GetForm()) {
-    iv += next_figure_->GetPosition();
-    space_.push_back(iv);
-  }*/
-  vector<Point> p = pile_.GetPile();
-  copy(p.begin(), p.end(), std::back_inserter(space_));
 }
 
 void Model::FigureGenerator() {

@@ -31,7 +31,7 @@ public:
   /*!
   \return returns points of pile
   */
-  std::vector<Point> GetPile();
+  std::vector<Point> &GetPile();
 
   //! Get information on pipe overload
   /*!
@@ -40,7 +40,11 @@ public:
   bool IsOverloaded();
 
 private:
+  // Indicates wheather point is occupied.
   std::vector<std::vector<bool>> pile_space_;
+
+  // All points of pile.
+  std::vector<Point> pile_points_space_;
   int max_y_;
 
   // Flag, which indicates, wheather pipe is overload.
@@ -51,5 +55,8 @@ private:
   \return returns number of deleted lines
   */
   unsigned ClearLine();
+
+  //! Compute points of pile
+  void ComputePilePointsSpace();
 };
 #endif
