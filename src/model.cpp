@@ -34,8 +34,6 @@ unsigned Model::GetTimeFall() { return time_fall_; };
 
 void Model::UpdatePosition(Point &&point) {
   bool to_update = false;
-  if (figure_ == nullptr)
-    return;
   figure_->SetPosition(figure_->GetPosition() + point);
   // Check if figure is inside game field.
   if (!CheckBoundaries())
