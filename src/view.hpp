@@ -17,7 +17,7 @@ public:
   \param [in,out] controller controller for interaction
   */
   View(const std::size_t screen_width, const std::size_t screen_height,
-       const std::size_t cell_size, Controller *controller);
+       const std::size_t cell_size);
 
   ~View();
 
@@ -47,7 +47,6 @@ private:
   const std::size_t cell_size_;
   const std::size_t window_width_;
   const std::size_t window_height_;
-  Controller *controller_;
 };
 
 #endif

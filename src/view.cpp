@@ -7,9 +7,9 @@ using std::string;
 using std::tuple;
 
 View::View(const std::size_t screen_height, const std::size_t screen_width,
-           const std::size_t cell_size, Controller *controller)
+           const std::size_t cell_size)
     : game_field_height_(screen_height), game_field_width_(screen_width),
-      cell_size_(cell_size), controller_(controller), border_width_(cell_size),
+      cell_size_(cell_size), border_width_(cell_size),
       info_field_width_(screen_width / game_info_width_proportion_),
       info_field_height_(screen_height),
       window_width_(screen_width + cell_size +

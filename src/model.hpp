@@ -16,7 +16,7 @@ public:
   \param [in] right_boundary right boundary of the game field
   \param [in] bottom_boundary bottom boundry of the game field
   */
-  Model(Controller *controller, int right_boundary, int bottom_boundary);
+  Model(int right_boundary, int bottom_boundary);
 
   //! Receive points, which represent occupied by figure space
   /*!
@@ -57,7 +57,6 @@ public:
 private:
   const int kFallTime = 10;
   const int kMinFallTime = 1;
-  Controller *controller_;
   std::unique_ptr<Figure> figure_;
   std::unique_ptr<Figure> next_figure_;
 

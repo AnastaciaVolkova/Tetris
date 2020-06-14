@@ -11,9 +11,9 @@ using std::vector;
 Controller::Controller(size_t target_frame_duration, size_t screen_height)
     : target_frame_duration_(target_frame_duration),
       cell_size_(screen_height / height_cells_number_), to_continue_(true) {
-  model_ = make_unique<Model>(this, width_cells_number_, height_cells_number_);
-  view_ = make_unique<View>(screen_height, screen_height / proportion_,
-                            cell_size_, this);
+  model_ = make_unique<Model>(width_cells_number_, height_cells_number_);
+  view_ =
+      make_unique<View>(screen_height, screen_height / proportion_, cell_size_);
 };
 
 void Controller::Run() {

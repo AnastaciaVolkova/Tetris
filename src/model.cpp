@@ -13,9 +13,8 @@ using std::random_device;
 using std::uniform_int_distribution;
 using std::vector;
 
-Model::Model(Controller *controller, int right_boundary, int bottom_boundary)
-    : controller_(controller), right_boundary_(right_boundary),
-      bottom_boundary_(bottom_boundary),
+Model::Model(int right_boundary, int bottom_boundary)
+    : right_boundary_(right_boundary), bottom_boundary_(bottom_boundary),
       pile_(right_boundary_, bottom_boundary_), was_touched_(false), score_(0),
       game_over_(false) {
 
