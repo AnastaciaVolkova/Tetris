@@ -1,6 +1,8 @@
 # Tetris
-Capstone project for Udacity CppND
-## Dependencies for Running Locally
+Capstone project for Udacity Nanodegree program [CppND](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213).Project implements the game [Tetris](https://en.wikipedia.org/wiki/Tetris).
+##Gameplay
+Player should place the falling figures in a way that the pile on the bottom has as less as possible empty cells. When line in the pile has no empty cells, it is deleted. Player can rotate figures, accelerate their fall. Player fails, when at least one figure exaggerates the game field on the top. For one deleted line player receives 10 scores, for two deleted at once lines - 40, three - 80,  four - 160.
+# Dependencies for Running Locally
 - cmake >= 3.16.7
   - All OSes: [click here for installation instructions](https://cmake.org/install/)
 - make >= 4.1
@@ -15,7 +17,7 @@ Capstone project for Udacity CppND
   - Mac: same deal as make - [install Xcode command line tools](https://developer.apple.com/xcode/features/)
   - Windows: recommend using [MinGW](http://www.mingw.org/)
 
-## Basic Build Instructions
+# Basic Build Instructions
 
 1. Clone this repo.
 2. Make a build directory in the top level directory: `mkdir build && cd build`
@@ -23,7 +25,7 @@ Capstone project for Udacity CppND
 4. Run it: `./tetris`.
 
 ## Notes
-- renderer.cpp renderer.hpp are inspired from [Udacity Snake](https://github.com/udacity/CppND_Capstone_Snake_Game)
+- framework is inspired from [Udacity Snake](https://github.com/udacity/CppND_Capstone_Snake_Game)
 
 # Classes descriptions
 ## Commands
