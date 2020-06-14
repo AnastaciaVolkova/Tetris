@@ -3,6 +3,7 @@
 #include <string>
 #include <tuple>
 
+using std::string;
 using std::tuple;
 
 View::View(const std::size_t screen_height, const std::size_t screen_width,
@@ -38,7 +39,7 @@ View::View(const std::size_t screen_height, const std::size_t screen_width,
   }
 }
 
-void View::Render(const std::vector<Point> &x) {
+void View::Render(const std::vector<Point> &x, const string &title) {
   SDL_Rect block;
   block.w = cell_size_;
   block.h = cell_size_;
@@ -85,6 +86,8 @@ void View::Render(const std::vector<Point> &x) {
 
   // Update Screen
   SDL_RenderPresent(sdl_renderer_);
+
+  SDL_SetWindowTitle(sdl_window_, title.c_str());
 };
 
 View::~View() {

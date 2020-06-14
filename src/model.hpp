@@ -42,6 +42,12 @@ public:
   //! Accelerate falling figure
   void Accelerate();
 
+  //! Get player score
+  /*!
+  \return returns player score
+  */
+  unsigned GetScore();
+
 private:
   const int kFallTime = 10;
   const int kMinFallTime = 1;
@@ -66,6 +72,9 @@ private:
   // Pile of fallen figures
   Pile pile_;
 
+  // Player score. Score is 2 power of deleted lines number multiplied by 10.
+  unsigned score_;
+
   //! Check if figure is in boundaries of game field
   bool CheckBoundaries();
 
@@ -74,5 +83,11 @@ private:
 
   //! Get new figure
   void FigureGenerator();
+
+  //! Compute score
+  /*!
+  \param [in] num_del_lines number of deleted lines
+  */
+  void ComputeScore(unsigned num_del_lines);
 };
 #endif

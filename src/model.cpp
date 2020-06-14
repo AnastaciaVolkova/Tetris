@@ -15,7 +15,7 @@ using std::vector;
 Model::Model(Controller *controller, int right_boundary, int bottom_boundary)
     : controller_(controller), right_boundary_(right_boundary),
       bottom_boundary_(bottom_boundary),
-      pile_(right_boundary_, bottom_boundary_), was_touched_(false) {
+      pile_(right_boundary_, bottom_boundary_), was_touched_(false), score_(0) {
 
   // Ignite random engine.
   random_device random_device;
@@ -45,7 +45,7 @@ void Model::UpdatePosition(Point &&point) {
 
   // Check if figure reached bottom during previous update.
   if (was_touched_) {
-    pile_.AddFigure(figure_.get());
+    ComputeScore(pile_.AddFigure(figure_.get()));
     figure_.release();
     FigureGenerator();
     to_update = true;
@@ -141,4 +141,11 @@ void Model::FigureGenerator() {
     break;
   }
   time_fall_ = kFallTime;
+}
+
+unsigned Model::GetScore() { return score_; }
+
+void Model::ComputeScore(unsigned num_deleted_lines) {
+  if (num_deleted_lines != 0)
+    score_ += 10 * (1 << num_deleted_lines);
 }

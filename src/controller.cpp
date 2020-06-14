@@ -4,6 +4,7 @@
 using namespace std;
 
 using std::make_unique;
+using std::to_string;
 using std::unique_ptr;
 using std::vector;
 
@@ -22,22 +23,22 @@ void Controller::Run() {
     Commands command = Input();
     switch (command) {
     case Commands::kLeft:
-      cout << "left" << endl;
+      // cout << "left" << endl;
       break;
     case Commands::kRight:
-      cout << "right" << endl;
+      // cout << "right" << endl;
       break;
     case Commands::kRotate:
-      cout << "rotate" << endl;
+      // cout << "rotate" << endl;
       break;
     case Commands::kRotate_ws:
-      cout << "rotate ws" << endl;
+      // cout << "rotate ws" << endl;
       break;
     case Commands::kDrop:
-      cout << "drop" << endl;
+      // cout << "drop" << endl;
       break;
     case Commands::kNone:
-      cout << "None" << endl;
+      // cout << "None" << endl;
       break;
     default:
       to_continue = false;
@@ -108,5 +109,5 @@ void Controller::Update(Commands command) {
 }
 
 Commands Controller::Render(const std::vector<Point> &space) {
-  view_->Render(space);
+  view_->Render(space, string("Score: ") + to_string(model_->GetScore()));
 };

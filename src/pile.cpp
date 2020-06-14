@@ -57,11 +57,11 @@ unsigned Pile::ClearLine() {
         all_filled = all_filled && pile_space_[c][row];
     }
     // Remove row
-    if (all_filled)
-      for (int c = 0; c < pile_space_.size(); c++) {
+    if (all_filled) {
+      for (int c = 0; c < pile_space_.size(); c++)
         pile_space_[c].erase(pile_space_[c].begin() + row);
-      }
-    else
+      num_lines++;
+    } else
       row++;
   }
   return num_lines;
