@@ -95,9 +95,13 @@ void Controller::Update(Commands command) {
 }
 
 Commands Controller::Render() {
-  vector<Point> space = model_->GetOccupiedSpace();
+  vector<const vector<Point> *> space = model_->GetOccupiedSpace();
+  vector<Point> s;
+  for (auto vp : space)
+    for (auto p : *vp)
+      s.push_back(p);
   if (model_->IsGameOver())
-    view_->Render(space, "Game Over");
+    view_->Render(s, "Game Over");
   else
-    view_->Render(space, string("Score: ") + to_string(model_->GetScore()));
+    view_->Render(s, string("Score: ") + to_string(model_->GetScore()));
 };
