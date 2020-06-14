@@ -4,7 +4,6 @@
 #include "SDL.h"
 #include "point.hpp"
 #include <vector>
-class Controller;
 
 //! Provides graphical part of the game.
 class View {

@@ -5,7 +5,6 @@
 #include "pile.hpp"
 #include <memory>
 #include <random>
-class Controller;
 
 //! Class implements game model
 class Model {

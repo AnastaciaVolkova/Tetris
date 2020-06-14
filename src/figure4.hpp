@@ -26,13 +26,13 @@ public:
   //! Makes left hook figure
   /*!
   \param [in] p point initial position of figure
-  \return Figure4 object, which is initialized as left-hook figure
+  \return returns Figure4 object, which is initialized as left-hook figure
   */
   static std::unique_ptr<Figure4> make_lhook(Point &&p);
   //! Make right hook figure
   /*!
   \param [in] p point initial position of figure
-  \return Figure4 object, which is initialized as right-hook figure
+  \return returns Figure4 object, which is initialized as right-hook figure
   */
 
   static std::unique_ptr<Figure4> make_rhook(Point &&p);
@@ -40,7 +40,7 @@ public:
   //! Make T figure
   /*!
   \param [in] p point initial position of figure
-  \return Figure4 object, which is initialized as T figure
+  \return returns Figure4 object, which is initialized as T figure
   */
   static std::unique_ptr<Figure4> make_t(Point &&p);
 };

@@ -26,21 +26,21 @@ public:
   //! Makes left-s figure
   /*!
   \param [in] p point initial position of figure
-  \return Figure2 object, which is initialized as left-s figure
+  \return returns Figure2 object, which is initialized as left-s figure
   */
   static std::unique_ptr<Figure2> make_ls(Point &&p);
 
   //! Make right-s figure
   /*!
   \param [in] p point initial position of figure
-  \return Figure2 object, which is initialized as right-s figure
+  \return returns Figure2 object, which is initialized as right-s figure
   */
   static std::unique_ptr<Figure2> make_rs(Point &&p);
 
   //! Make stick figure
   /*!
   \param [in] p point initial position of figure
-  \return Figure2 object, which is initialized as stick figure
+  \return returns Figure2 object, which is initialized as stick figure
   */
   static std::unique_ptr<Figure2> make_stick(Point &&p);
 };

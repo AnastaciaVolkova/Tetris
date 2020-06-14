@@ -26,7 +26,7 @@ public:
   //! Makes left-s figure
   /*!
   \param [in] p point initial position of figure
-  \return Figure1 object, which is initialized as square
+  \return returns Figure1 object, which is initialized as square
   */
   static std::unique_ptr<Figure1> make_square(Point &&p);
 };
