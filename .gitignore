@@ -1,8 +1,5 @@
-*.odt
 build/
 .idea/
 *.txt
 .doxygenconfig
-*.sh
-*.odg
 
