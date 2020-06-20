@@ -23,6 +23,9 @@ Model::Model()
   random_engine_ = mt19937(random_device());
   dist_ = uniform_int_distribution<int>(0, 6);
 
+  falling_figure_space_ = make_unique<vector<Point>>();
+  next_figure_space_ = make_unique<vector<Point>>();
+
   // Generate first figures.
   FigureGenerator(); // First on game field.
   FigureGenerator(); // Next of first figure.
@@ -31,8 +34,8 @@ Model::Model()
 
 vector<const vector<Point> *> Model::GetOccupiedSpace() {
   vector<const vector<Point> *> space;
-  space.push_back(&falling_figure_space_);
-  space.push_back(&next_figure_space_);
+  space.push_back(falling_figure_space_.get());
+  space.push_back(next_figure_space_.get());
   space.push_back(&pile_.GetPile());
   return space;
 };
@@ -102,10 +105,10 @@ bool Model::CheckBoundaries() {
 }
 
 void Model::UpdateFallingFigureSpace() {
-  falling_figure_space_.clear();
+  falling_figure_space_->clear();
   for (auto iv : figure_->GetForm()) {
     iv += figure_->GetPosition();
-    falling_figure_space_.push_back(iv);
+    falling_figure_space_->push_back(iv);
   }
 }
 
@@ -146,10 +149,10 @@ void Model::FigureGenerator() {
     break;
   }
 
-  next_figure_space_.clear();
+  next_figure_space_->clear();
   for (auto it : next_figure_->GetForm()) {
     it += next_figure_->GetPosition();
-    next_figure_space_.push_back(it);
+    next_figure_space_->push_back(it);
   }
   time_fall_ = kFallTime;
 }

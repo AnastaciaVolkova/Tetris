@@ -75,10 +75,10 @@ private:
   std::uniform_int_distribution<int> dist_;
 
   // Points of falling figure.
-  std::vector<Point> falling_figure_space_;
+  std::unique_ptr<std::vector<Point>> falling_figure_space_;
 
   // Points of next figure to draw.
-  std::vector<Point> next_figure_space_;
+  std::unique_ptr<std::vector<Point>> next_figure_space_;
 
   // Time, which needs figure to reach the bottom (s).
   unsigned time_fall_;
