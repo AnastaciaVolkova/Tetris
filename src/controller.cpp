@@ -94,7 +94,7 @@ void Controller::Update(Commands command) {
   }
 }
 
-Commands Controller::Render() {
+void Controller::Render() {
   vector<const vector<Point> *> space = model_->GetOccupiedSpace();
   vector<Point> s;
   for (auto vp : space)

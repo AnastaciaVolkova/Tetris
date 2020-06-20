@@ -50,6 +50,6 @@ private:
   /*!
     \param [in] space point to draw
   */
-  Commands Render();
+  void Render();
 };
 #endif
