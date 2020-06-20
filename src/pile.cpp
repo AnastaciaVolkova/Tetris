@@ -4,10 +4,11 @@
 
 using std::find_if;
 using std::vector;
+using std::make_unique;
 
 Pile::Pile(int width, int height)
-    : pile_space_(width), max_y_(height - 1), is_overloaded_(false),
-      pile_points_space_(0) {}
+    : pile_space_(width), max_y_(height - 1), is_overloaded_(false)
+      {pile_points_space_ = make_unique<vector<Point>>();}
 
 bool Pile ::IsTouched(const Figure *figure) {
   bool is_touched = false;
@@ -15,10 +16,10 @@ bool Pile ::IsTouched(const Figure *figure) {
   for (auto c : figure->GetForm()) {
     c += figure->GetPosition();
     // Find points of pile, which are right beneath current figure point.
-    auto touch = find_if(pile.begin(), pile.end(), [&](auto it) {
+    auto touch = find_if(pile->begin(), pile->end(), [&](auto it) {
       return ((c.x == it.x) && ((c.y + 1) == it.y));
     });
-    is_touched = is_touched || (touch != pile.end()) || (c.y >= max_y_);
+    is_touched = is_touched || (touch != pile->end()) || (c.y >= max_y_);
   }
   if (is_touched) {
     // Find out if points with negative y coordinate exist.
@@ -44,7 +45,7 @@ unsigned Pile::AddFigure(const Figure *figure) {
   return num_deleted_lines;
 }
 
-vector<Point> &Pile::GetPile() { return pile_points_space_; }
+const vector<Point>* Pile::GetPile() { return pile_points_space_.get(); }
 
 unsigned Pile::ClearLine() {
   unsigned num_lines = 0;
@@ -74,9 +75,9 @@ unsigned Pile::ClearLine() {
 bool Pile::IsOverloaded() { return is_overloaded_; };
 
 void Pile::ComputePilePointsSpace() {
-  pile_points_space_.clear();
+  pile_points_space_->clear();
   for (int c = 0; c < pile_space_.size(); c++)
     for (int r = 0; r < pile_space_[c].size(); r++)
       if (pile_space_[c][r])
-        pile_points_space_.push_back(Point(c, max_y_ - r, Color::kGrey));
+        pile_points_space_->push_back(Point(c, max_y_ - r, Color::kGrey));
 }

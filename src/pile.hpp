@@ -3,6 +3,8 @@
 #include "figure.hpp"
 #include "point.hpp"
 #include <vector>
+#include <memory>
+
 //! Class implements bottom of the game field
 class Pile {
 public:
@@ -31,7 +33,7 @@ public:
   /*!
   \return returns points of pile
   */
-  std::vector<Point> &GetPile();
+  const std::vector<Point>* GetPile();
 
   //! Get information on pipe overload
   /*!
@@ -44,7 +46,7 @@ private:
   std::vector<std::vector<bool>> pile_space_;
 
   // All points of pile.
-  std::vector<Point> pile_points_space_;
+  std::unique_ptr<std::vector<Point>> pile_points_space_;
   int max_y_;
 
   // Flag, which indicates, wheather pipe is overload.

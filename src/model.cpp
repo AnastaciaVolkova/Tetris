@@ -36,7 +36,7 @@ vector<const vector<Point> *> Model::GetOccupiedSpace() {
   vector<const vector<Point> *> space;
   space.push_back(falling_figure_space_.get());
   space.push_back(next_figure_space_.get());
-  space.push_back(&pile_.GetPile());
+  space.push_back(pile_.GetPile());
   return space;
 };
 
@@ -89,17 +89,17 @@ void Model::Accelerate() { time_fall_ = kMinFallTime; }
 
 bool Model::CheckBoundaries() {
   bool inside_boundaries = true;
-  vector<Point> pile = pile_.GetPile();
+  const vector<Point>* pile = pile_.GetPile();
   for (const auto &f : figure_->GetForm()) {
     Point a = f + figure_->GetPosition();
     // Find if figure and pile intersect.
-    auto common = find_if(pile.begin(), pile.end(), [&](auto it) {
+    auto common = find_if(pile->begin(), pile->end(), [&](auto it) {
       return (it.x == a.x) && (it.y == a.y);
     });
     inside_boundaries =
         inside_boundaries &&
         ((a.x >= 0) && (a.x < kGameFieldWidth_) && (a.y < kGameFieldHeight_)) &&
-        (common == pile.end());
+        (common == pile->end());
   }
   return inside_boundaries;
 }
