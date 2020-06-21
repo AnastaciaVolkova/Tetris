@@ -39,7 +39,7 @@ ViewSDL::ViewSDL(size_t screen_width, size_t screen_height, size_t cell_size) : 
   }
 }
 
-void ViewSDL::Render(const vector<Point> &x, std::size_t cell_size, const string &title)
+void ViewSDL::Render(const vector<Point> &x, std::size_t cell_size, const string &message)
 {
   SDL_Rect block;
   block.w = cell_size;
@@ -84,7 +84,7 @@ void ViewSDL::Render(const vector<Point> &x, std::size_t cell_size, const string
   // Update Screen
   SDL_RenderPresent(sdl_renderer_);
 
-  SDL_SetWindowTitle(sdl_window_, title.c_str());
+  SDL_SetWindowTitle(sdl_window_, message.c_str());
 };
 
 ViewSDL::~ViewSDL()

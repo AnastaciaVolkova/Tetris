@@ -41,9 +41,9 @@ public:
   //! Draw the points
   /*!
   \param [in] x points to draw
-  \param [in] title window title
+  \param [in] message mesage for player 
   */
-  virtual void Render(const std::vector<Point> &x, std::size_t cell_size, const std::string &title) = 0;
+  virtual void Render(const std::vector<Point> &x, std::size_t cell_size, const std::string &message) = 0;
 
   //! Getter for height of the game field
   /*!
