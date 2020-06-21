@@ -8,14 +8,13 @@ using std::to_string;
 using std::unique_ptr;
 using std::vector;
 
-Controller::Controller(size_t target_frame_duration, size_t screen_height, unique_ptr<Model> &&model)
+Controller::Controller(size_t target_frame_duration, size_t screen_height, unique_ptr<Model> &&model, unique_ptr<View> &&view)
     : target_frame_duration_(target_frame_duration), to_continue_(true)
 {
   model_ = move(model);
   cell_size_ = static_cast<size_t>(
       round(static_cast<float>(screen_height) / model_->GetGameFieldHeight()));
-  view_ = make_unique<View>(
-      cell_size_ * model_->GetGameFieldWidth(), screen_height, cell_size_);
+  view_ = move(view);
 };
 
 void Controller::Run()

@@ -26,8 +26,9 @@ public:
     \param [in] target_frame_duration duration of game loop
     \param [in] screen_height height of the window
     \param [in] model
+    \param [in] view
   */
-  Controller(size_t target_frame_duration, size_t screen_height, std::unique_ptr<Model> &&model);
+  Controller(size_t target_frame_duration, size_t screen_height, std::unique_ptr<Model> &&model, std::unique_ptr<View> &&view);
 
   //! Game loop
   void Run();
