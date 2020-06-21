@@ -1,5 +1,5 @@
 #include "controller.hpp"
-#include "view_sdl.hpp"
+#include "view_qt.hpp"
 #include "model.hpp"
 
 #include <memory>
