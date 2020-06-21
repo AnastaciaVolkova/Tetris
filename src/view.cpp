@@ -12,7 +12,6 @@ using std::vector;
 
 View::View(size_t screen_height, size_t screen_width, size_t cell_size)
     : game_field_height_(screen_height), game_field_width_(screen_width),
-      border_width_(cell_size),
       info_field_width_(screen_width / game_info_width_proportion_),
       info_field_height_(screen_height),
       window_width_(screen_width + cell_size +
@@ -54,7 +53,7 @@ void View::Render(const vector<Point> &x, std::size_t cell_size, const string &t
 
   // Draw border
   SDL_Rect field;
-  field.w = border_width_;
+  field.w = cell_size;
   field.h = game_field_height_;
   field.x = game_field_width_;
   field.y = 0;
@@ -72,7 +71,7 @@ void View::Render(const vector<Point> &x, std::size_t cell_size, const string &t
   // Draw info field
   field.w = info_field_width_;
   field.h = info_field_height_;
-  field.x = game_field_width_ + border_width_;
+  field.x = game_field_width_ + cell_size;
   field.y = 0;
   SDL_SetRenderDrawColor(sdl_renderer_, 0x1e, 0x1e, 0x1e, 0xff);
   SDL_RenderFillRect(sdl_renderer_, &field);

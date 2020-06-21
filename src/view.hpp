@@ -71,7 +71,6 @@ private:
 
   const std::size_t game_field_width_;
   const std::size_t game_field_height_;
-  const std::size_t border_width_;
   const std::size_t game_info_width_proportion_ = 2;
   const std::size_t info_field_width_;
   const std::size_t info_field_height_;
