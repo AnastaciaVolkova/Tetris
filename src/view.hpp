@@ -5,6 +5,19 @@
 #include "point.hpp"
 #include <vector>
 
+enum class Event
+{
+  kUp,
+  kDown,
+  kLeft,
+  kRight,
+  kSpace,
+  kQ,
+  kEscape,
+  kQuit,
+  kOther
+};
+
 //! Provides graphical part of the game.
 class View
 {
@@ -38,6 +51,13 @@ public:
   \return returns value representing the number of milliseconds since the SDL library initialized
   */
   size_t GetTicks();
+
+  //! Get event
+  /*!
+  \param [out] polled event 
+  \return returns 1 if there is a pending event or 0 if there are none available
+  */
+  int GetEvent(Event &event);
 
 private:
   SDL_Window *sdl_window_;

@@ -104,3 +104,41 @@ View::~View()
 size_t View::GetHeight() { return game_field_height_; }
 
 size_t View::GetTicks() { return SDL_GetTicks(); };
+
+int View::GetEvent(Event &event)
+{
+  SDL_Event sdl_event;
+  event = Event::kOther;
+  int r = SDL_PollEvent(&sdl_event);
+  if (sdl_event.type == SDL_QUIT)
+    event = Event::kQuit;
+  else if (sdl_event.type == SDL_KEYDOWN)
+  {
+    switch (sdl_event.key.keysym.sym)
+    {
+    case SDLK_UP:
+      event = Event::kUp;
+      break;
+    case SDLK_DOWN:
+      event = Event::kDown;
+      break;
+    case SDLK_LEFT:
+      event = Event::kLeft;
+      break;
+    case SDLK_RIGHT:
+      event = Event::kRight;
+      break;
+    case SDLK_SPACE:
+      event = Event::kSpace;
+      break;
+    case SDLK_q:
+    case SDLK_ESCAPE:
+      event = Event::kEscape;
+      break;
+    default:
+      event = Event::kOther;
+      break;
+    }
+  }
+  return r;
+};

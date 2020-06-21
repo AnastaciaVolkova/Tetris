@@ -33,33 +33,27 @@ void Controller::Run()
 Commands Controller::Input()
 {
   // Use this value to check if event was caught.
-  size_t start_time = SDL_GetTicks();
-  SDL_Event event;
-  while (SDL_PollEvent(&event) &&
+  size_t start_time = view_->GetTicks();
+  Event event;
+  while (view_->GetEvent(event) &&
          ((view_->GetTicks() - start_time) < target_frame_duration_))
   {
-    if (event.type == SDL_QUIT)
+    switch (event)
     {
+    case Event::kUp:
+      return Commands::kRotate;
+    case Event::kDown:
+      return Commands::kRotate_ws;
+    case Event::kLeft:
+      return Commands::kLeft;
+    case Event::kRight:
+      return Commands::kRight;
+    case Event::kSpace:
+      return Commands::kDrop;
+    case Event::kQ:
+    case Event::kEscape:
+    case Event::kQuit:
       return Commands::kExit;
-    }
-    else if (event.type == SDL_KEYDOWN)
-    {
-      switch (event.key.keysym.sym)
-      {
-      case SDLK_UP:
-        return Commands::kRotate;
-      case SDLK_DOWN:
-        return Commands::kRotate_ws;
-      case SDLK_LEFT:
-        return Commands::kLeft;
-      case SDLK_RIGHT:
-        return Commands::kRight;
-      case SDLK_SPACE:
-        return Commands::kDrop;
-      case SDLK_q:
-      case SDLK_ESCAPE:
-        return Commands::kExit;
-      }
     }
   }
   return Commands::kNone;
