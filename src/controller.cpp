@@ -15,7 +15,7 @@ Controller::Controller(size_t target_frame_duration, size_t screen_height, uniqu
   cell_size_ = static_cast<size_t>(
       round(static_cast<float>(screen_height) / model_->GetGameFieldHeight()));
   view_ = make_unique<View>(
-      screen_height, cell_size_ * model_->GetGameFieldWidth(), cell_size_);
+      cell_size_ * model_->GetGameFieldWidth(), screen_height, cell_size_);
 };
 
 void Controller::Run()

@@ -10,7 +10,7 @@ using std::string;
 using std::tuple;
 using std::vector;
 
-View::View(size_t screen_height, size_t screen_width, size_t cell_size)
+View::View(size_t screen_width, size_t screen_height, size_t cell_size)
     : game_field_height_(screen_height), game_field_width_(screen_width),
       info_field_width_(screen_width / kGameInfoWidthProportion_),
       info_field_height_(screen_height),
