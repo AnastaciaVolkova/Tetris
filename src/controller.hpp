@@ -1,16 +1,25 @@
 #ifndef _CONTROLLER_HPP_
 #define _CONTROLLER_HPP_
-#include "SDL.h"
 #include "model.hpp"
 #include "point.hpp"
 #include "view.hpp"
 #include <memory>
 
 //! Class contains user commands.
-enum class Commands { kLeft, kRight, kRotate, kRotate_ws, kDrop, kNone, kExit };
+enum class Commands
+{
+  kLeft,
+  kRight,
+  kRotate,
+  kRotate_ws,
+  kDrop,
+  kNone,
+  kExit
+};
 
 //! Class takes over interacting between game and its graphical representation.
-class Controller {
+class Controller
+{
 public:
   //! Constructor
   /*!
