@@ -12,7 +12,7 @@ using std::vector;
 
 View::View(size_t screen_height, size_t screen_width, size_t cell_size)
     : game_field_height_(screen_height), game_field_width_(screen_width),
-      cell_size_(cell_size), border_width_(cell_size),
+      border_width_(cell_size),
       info_field_width_(screen_width / game_info_width_proportion_),
       info_field_height_(screen_height),
       window_width_(screen_width + cell_size +
@@ -46,11 +46,11 @@ View::View(size_t screen_height, size_t screen_width, size_t cell_size)
   }
 }
 
-void View::Render(const vector<Point> &x, const string &title)
+void View::Render(const vector<Point> &x, std::size_t cell_size, const string &title)
 {
   SDL_Rect block;
-  block.w = cell_size_;
-  block.h = cell_size_;
+  block.w = cell_size;
+  block.h = cell_size;
 
   // Draw border
   SDL_Rect field;

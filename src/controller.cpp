@@ -108,7 +108,7 @@ void Controller::Render()
     for (auto p : *vp)
       s.push_back(p);
   if (model_->IsGameOver())
-    view_->Render(s, "Game Over");
+    view_->Render(s, cell_size_, "Game Over");
   else
-    view_->Render(s, string("Score: ") + to_string(model_->GetScore()));
+    view_->Render(s, cell_size_, string("Score: ") + to_string(model_->GetScore()));
 };
