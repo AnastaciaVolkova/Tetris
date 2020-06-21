@@ -2,15 +2,16 @@
 #include <cmath>
 
 using std::make_unique;
+using std::move;
 using std::string;
 using std::to_string;
 using std::unique_ptr;
 using std::vector;
 
-Controller::Controller(size_t target_frame_duration, size_t screen_height)
+Controller::Controller(size_t target_frame_duration, size_t screen_height, unique_ptr<Model> &&model)
     : target_frame_duration_(target_frame_duration), to_continue_(true)
 {
-  model_ = make_unique<Model>();
+  model_ = move(model);
   cell_size_ = static_cast<size_t>(
       round(static_cast<float>(screen_height) / model_->GetGameFieldHeight()));
   view_ = make_unique<View>(
