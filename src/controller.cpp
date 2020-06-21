@@ -8,7 +8,8 @@ using std::unique_ptr;
 using std::vector;
 
 Controller::Controller(size_t target_frame_duration, size_t screen_height)
-    : target_frame_duration_(target_frame_duration), to_continue_(true) {
+    : target_frame_duration_(target_frame_duration), to_continue_(true)
+{
   model_ = make_unique<Model>();
   cell_size_ = static_cast<size_t>(
       round(static_cast<float>(screen_height) / model_->GetGameFieldHeight()));
@@ -16,8 +17,10 @@ Controller::Controller(size_t target_frame_duration, size_t screen_height)
       screen_height, cell_size_ * model_->GetGameFieldWidth(), cell_size_);
 };
 
-void Controller::Run() {
-  while (to_continue_) {
+void Controller::Run()
+{
+  while (to_continue_)
+  {
     size_t start = SDL_GetTicks();
     Commands command = Input();
     Update(command);
@@ -27,16 +30,22 @@ void Controller::Run() {
   }
 }
 
-Commands Controller::Input() {
+Commands Controller::Input()
+{
   // Use this value to check if event was caught.
   size_t start_time = SDL_GetTicks();
   SDL_Event event;
   while (SDL_PollEvent(&event) &&
-         ((SDL_GetTicks() - start_time) < target_frame_duration_)) {
-    if (event.type == SDL_QUIT) {
+         ((view_->GetTicks() - start_time) < target_frame_duration_))
+  {
+    if (event.type == SDL_QUIT)
+    {
       return Commands::kExit;
-    } else if (event.type == SDL_KEYDOWN) {
-      switch (event.key.keysym.sym) {
+    }
+    else if (event.type == SDL_KEYDOWN)
+    {
+      switch (event.key.keysym.sym)
+      {
       case SDLK_UP:
         return Commands::kRotate;
       case SDLK_DOWN:
@@ -56,12 +65,14 @@ Commands Controller::Input() {
   return Commands::kNone;
 }
 
-void Controller::Update(Commands command) {
+void Controller::Update(Commands command)
+{
   if (command == Commands::kExit)
     to_continue_ = false;
   if (model_->IsGameOver())
     return;
-  switch (command) {
+  switch (command)
+  {
   case Commands::kRotate:
     model_->RotateCounter();
     break;
@@ -88,13 +99,15 @@ void Controller::Update(Commands command) {
   // Set figure speed.
   float speed = float(view_->GetHeight()) / (model_->GetTimeFall() * 1000);
   distance_y_ += static_cast<size_t>(round(speed * target_frame_duration_));
-  if (distance_y_ >= cell_size_) {
+  if (distance_y_ >= cell_size_)
+  {
     model_->UpdatePosition({0, 1});
     distance_y_ = 0;
   }
 }
 
-void Controller::Render() {
+void Controller::Render()
+{
   vector<const vector<Point> *> space = model_->GetOccupiedSpace();
   vector<Point> s;
   for (auto vp : space)

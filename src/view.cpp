@@ -17,9 +17,11 @@ View::View(size_t screen_height, size_t screen_width, size_t cell_size)
       info_field_height_(screen_height),
       window_width_(screen_width + cell_size +
                     screen_width / game_info_width_proportion_),
-      window_height_(screen_height) {
+      window_height_(screen_height)
+{
   // Initialize SDL
-  if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+  if (SDL_Init(SDL_INIT_VIDEO) < 0)
+  {
     cerr << "SDL could not initialize.\n";
     cerr << "SDL_Error: " << SDL_GetError() << "\n";
   }
@@ -29,20 +31,23 @@ View::View(size_t screen_height, size_t screen_width, size_t cell_size)
       SDL_CreateWindow("Tetris", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                        window_width_, window_height_, SDL_WINDOW_SHOWN);
 
-  if (nullptr == sdl_window_) {
+  if (nullptr == sdl_window_)
+  {
     cerr << "Window could not be created.\n";
     cerr << " SDL_Error: " << SDL_GetError() << "\n";
   }
 
   // Create renderer
   sdl_renderer_ = SDL_CreateRenderer(sdl_window_, -1, SDL_RENDERER_ACCELERATED);
-  if (nullptr == sdl_renderer_) {
+  if (nullptr == sdl_renderer_)
+  {
     cerr << "Renderer could not be created.\n";
     cerr << "SDL_Error: " << SDL_GetError() << "\n";
   }
 }
 
-void View::Render(const vector<Point> &x, const string &title) {
+void View::Render(const vector<Point> &x, const string &title)
+{
   SDL_Rect block;
   block.w = cell_size_;
   block.h = cell_size_;
@@ -73,7 +78,8 @@ void View::Render(const vector<Point> &x, const string &title) {
   SDL_RenderFillRect(sdl_renderer_, &field);
 
   // Render block
-  for (const auto &i : x) {
+  for (const auto &i : x)
+  {
     auto color = i.GetRgba();
     SDL_SetRenderDrawColor(sdl_renderer_, get<0>(color), get<1>(color),
                            get<2>(color), get<3>(color));
@@ -88,10 +94,13 @@ void View::Render(const vector<Point> &x, const string &title) {
   SDL_SetWindowTitle(sdl_window_, title.c_str());
 };
 
-View::~View() {
+View::~View()
+{
   SDL_DestroyWindow(sdl_window_);
   SDL_DestroyRenderer(sdl_renderer_);
   SDL_Quit();
 }
 
 size_t View::GetHeight() { return game_field_height_; }
+
+size_t View::GetTicks() { return SDL_GetTicks(); };

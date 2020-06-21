@@ -6,7 +6,8 @@
 #include <vector>
 
 //! Provides graphical part of the game.
-class View {
+class View
+{
 public:
   //! Constructor
   /*!
@@ -31,6 +32,12 @@ public:
   \return returns height of the game field
   */
   size_t GetHeight();
+
+  //! Getter for ticks
+  /*!
+  \return returns value representing the number of milliseconds since the SDL library initialized
+  */
+  size_t GetTicks();
 
 private:
   SDL_Window *sdl_window_;
