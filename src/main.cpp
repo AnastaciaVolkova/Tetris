@@ -15,10 +15,11 @@ int main()
   constexpr size_t kScreenHeight{1600};
 
   unique_ptr<Model> model = make_unique<Model>();
-  unique_ptr<View> view = make_unique<ViewSDL>(
+  unique_ptr<View> view = make_unique<ViewQT>(
       kScreenHeight / (model->GetGameFieldHeight() / model->GetGameFieldWidth()),
       kScreenHeight,
       kScreenHeight / model->GetGameFieldHeight());
   Controller controller(kMsPerFrame, kScreenHeight, move(model), move(view));
   controller.Run();
+  return 0;
 }

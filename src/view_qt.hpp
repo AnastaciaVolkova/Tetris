@@ -4,9 +4,17 @@
 #include "view.hpp"
 #include "point.hpp"
 #include <vector>
-
+#include <QApplication>
+#include <QWidget>
+#include <QObject>
+#include <QKeyEvent>
+#include <QElapsedTimer>
+#include <QThread>
+#include <memory>
+#include <stack>
+#include <iostream>
 //! Provides graphical part of the game.
-class ViewSDL : public View
+class ViewQT : public View, public QObject
 {
 public:
   //! Constructor
@@ -15,11 +23,11 @@ public:
   \param [in] screen_height height of the screen
   \param [in] cell_size size of quadratic cell
   */
-  ViewSDL(std::size_t screen_width, std::size_t screen_height,
-          std::size_t cell_size);
+  ViewQT(std::size_t screen_width, std::size_t screen_height,
+         std::size_t cell_size);
 
   // Destructor
-  ~ViewSDL() override;
+  ~ViewQT() override;
 
   //! Draw the points
   /*!
@@ -54,6 +62,13 @@ public:
   void Delay(unsigned delay_ms) override;
 
 private:
-};
+  bool eventFilter(QObject *obj, QEvent *event) override;
 
+  QApplication q_application_;
+  QWidget window_;
+  QElapsedTimer timer_;
+  int argc_ = 1;
+  char *argv_[1] = {"tetris"};
+  std::stack<QKeyEvent> key_events;
+};
 #endif

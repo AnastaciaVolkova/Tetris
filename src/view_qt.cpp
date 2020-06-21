@@ -1,17 +1,27 @@
 #include "view_qt.hpp"
-#include <iostream>
 #include <string>
 #include <tuple>
+#include <QString>
 
 using std::cerr;
 using std::get;
+using std::make_unique;
 using std::size_t;
 using std::string;
 using std::tuple;
 using std::vector;
 
-ViewSDL::ViewSDL(size_t screen_width, size_t screen_height, size_t cell_size) : View(screen_width, screen_height, cell_size)
-{ /*
+ViewQT::ViewQT(size_t screen_width, size_t screen_height, size_t cell_size) : View(screen_width, screen_height, cell_size), q_application_(argc_, argv_), window_()
+{
+  window_.resize(kWindowWidth_, kWindowHeight_);
+  window_.show();
+  window_.setWindowTitle(QString("Tetris"));
+  window_.setFixedSize(window_.size());
+  window_.installEventFilter(this);
+  timer_.start();
+  q_application_.exec();
+
+  /*
   // Initialize SDL
   if (SDL_Init(SDL_INIT_VIDEO) < 0)
   {
@@ -39,7 +49,7 @@ ViewSDL::ViewSDL(size_t screen_width, size_t screen_height, size_t cell_size) : 
   }*/
 }
 
-void ViewSDL::Render(const vector<Point> &x, std::size_t cell_size, const string &message){
+void ViewQT::Render(const vector<Point> &x, std::size_t cell_size, const string &message){
     /*
   SDL_Rect block;
   block.w = cell_size;
@@ -87,58 +97,72 @@ void ViewSDL::Render(const vector<Point> &x, std::size_t cell_size, const string
   SDL_SetWindowTitle(sdl_window_, message.c_str());*/
 };
 
-ViewSDL::~ViewSDL()
+ViewQT::~ViewQT()
 { /*
   SDL_DestroyWindow(sdl_window_);
   SDL_DestroyRenderer(sdl_renderer_);
   SDL_Quit();*/
 }
 
-size_t ViewSDL::GetHeight()
-{ /*return game_field_height_; */
+size_t ViewQT::GetHeight()
+{
+  return kWindowHeight_;
 }
 
-size_t ViewSDL::GetTicks(){/*return SDL_GetTicks(); */};
+size_t ViewQT::GetTicks() { return timer_.elapsed(); };
 
-int ViewSDL::GetEvent(Event &event){
-    /*
-  SDL_Event sdl_event;
-  event = Event::kOther;
-  int r = SDL_PollEvent(&sdl_event);
-  if (sdl_event.type == SDL_QUIT)
-    event = Event::kQuit;
-  else if (sdl_event.type == SDL_KEYDOWN)
+int ViewQT::GetEvent(Event &event)
+{
+  if (key_events.size() == 0)
   {
-    switch (sdl_event.key.keysym.sym)
-    {
-    case SDLK_UP:
-      event = Event::kUp;
-      break;
-    case SDLK_DOWN:
-      event = Event::kDown;
-      break;
-    case SDLK_LEFT:
-      event = Event::kLeft;
-      break;
-    case SDLK_RIGHT:
-      event = Event::kRight;
-      break;
-    case SDLK_SPACE:
-      event = Event::kSpace;
-      break;
-    case SDLK_q:
-    case SDLK_ESCAPE:
-      event = Event::kEscape;
-      break;
-    default:
-      event = Event::kOther;
-      break;
-    }
+    event = Event::kOther;
+    return 0;
   }
-  return r;*/
+  QKeyEvent q_event = key_events.top();
+  key_events.pop();
+  switch (q_event.key())
+  {
+  case Qt::Key_Left:
+    event = Event::kLeft;
+    break;
+  case Qt::Key_Right:
+    event = Event::kRight;
+    break;
+  case Qt::Key_Up:
+    event = Event::kUp;
+    break;
+  case Qt::Key_Down:
+    event = Event::kDown;
+    break;
+  case Qt::Key_Space:
+    event = Event::kSpace;
+    break;
+  case Qt::Key_Escape:
+  case Qt::Key_Q:
+    event = Event::kQuit;
+    break;
+  default:
+    event = Event::kOther;
+    break;
+  }
+  return 1;
 };
 
-void ViewSDL::Delay(unsigned delay_ms)
-{ /*
-  SDL_Delay(delay_ms);*/
+void ViewQT::Delay(unsigned delay_ms)
+{
+  QThread::msleep(delay_ms);
 }
+
+bool ViewQT::eventFilter(QObject *obj, QEvent *event)
+{
+  if (event->type() == QEvent::KeyPress)
+  {
+    QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+    key_events.push(*keyEvent);
+    return true;
+  }
+  else
+  {
+    return QObject::eventFilter(obj, event);
+  }
+};
