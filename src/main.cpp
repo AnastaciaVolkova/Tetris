@@ -15,7 +15,6 @@ int main()
   constexpr size_t kScreenHeight{1600};
 
   unique_ptr<Model> model = make_unique<Model>();
-  //cell_size_ * model_->GetGameFieldWidth(), screen_height, cell_size_
   unique_ptr<View> view = make_unique<ViewSDL>(
       kScreenHeight / (model->GetGameFieldHeight() / model->GetGameFieldWidth()),
       kScreenHeight,
