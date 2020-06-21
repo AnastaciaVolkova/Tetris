@@ -1,13 +1,13 @@
 #ifndef _MODEL_HPP_
 #define _MODEL_HPP_
-#include "SDL.h"
 #include "figure.hpp"
 #include "pile.hpp"
 #include <memory>
 #include <random>
 
 //! Class implements game model
-class Model {
+class Model
+{
 public:
   //! Constructor
   Model();
