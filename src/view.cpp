@@ -12,11 +12,11 @@ using std::vector;
 
 View::View(size_t screen_height, size_t screen_width, size_t cell_size)
     : game_field_height_(screen_height), game_field_width_(screen_width),
-      info_field_width_(screen_width / game_info_width_proportion_),
+      info_field_width_(screen_width / kGameInfoWidthProportion_),
       info_field_height_(screen_height),
-      window_width_(screen_width + cell_size +
-                    screen_width / game_info_width_proportion_),
-      window_height_(screen_height)
+      kWindowWidth_(screen_width + cell_size +
+                    screen_width / kGameInfoWidthProportion_),
+      kWindowHeight_(screen_height)
 {
   // Initialize SDL
   if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -28,7 +28,7 @@ View::View(size_t screen_height, size_t screen_width, size_t cell_size)
   // Create Window
   sdl_window_ =
       SDL_CreateWindow("Tetris", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                       window_width_, window_height_, SDL_WINDOW_SHOWN);
+                       kWindowWidth_, kWindowHeight_, SDL_WINDOW_SHOWN);
 
   if (nullptr == sdl_window_)
   {
