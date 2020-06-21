@@ -1,4 +1,4 @@
-#include "view.hpp"
+#include "view_sdl.hpp"
 #include <iostream>
 #include <string>
 #include <tuple>
@@ -10,13 +10,7 @@ using std::string;
 using std::tuple;
 using std::vector;
 
-View::View(size_t screen_width, size_t screen_height, size_t cell_size)
-    : game_field_height_(screen_height), game_field_width_(screen_width),
-      info_field_width_(screen_width / kGameInfoWidthProportion_),
-      info_field_height_(screen_height),
-      kWindowWidth_(screen_width + cell_size +
-                    screen_width / kGameInfoWidthProportion_),
-      kWindowHeight_(screen_height)
+ViewSDL::ViewSDL(size_t screen_width, size_t screen_height, size_t cell_size) : View(screen_width, screen_height, cell_size)
 {
   // Initialize SDL
   if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -45,7 +39,7 @@ View::View(size_t screen_width, size_t screen_height, size_t cell_size)
   }
 }
 
-void View::Render(const vector<Point> &x, std::size_t cell_size, const string &title)
+void ViewSDL::Render(const vector<Point> &x, std::size_t cell_size, const string &title)
 {
   SDL_Rect block;
   block.w = cell_size;
@@ -93,18 +87,18 @@ void View::Render(const vector<Point> &x, std::size_t cell_size, const string &t
   SDL_SetWindowTitle(sdl_window_, title.c_str());
 };
 
-View::~View()
+ViewSDL::~ViewSDL()
 {
   SDL_DestroyWindow(sdl_window_);
   SDL_DestroyRenderer(sdl_renderer_);
   SDL_Quit();
 }
 
-size_t View::GetHeight() { return game_field_height_; }
+size_t ViewSDL::GetHeight() { return game_field_height_; }
 
-size_t View::GetTicks() { return SDL_GetTicks(); };
+size_t ViewSDL::GetTicks() { return SDL_GetTicks(); };
 
-int View::GetEvent(Event &event)
+int ViewSDL::GetEvent(Event &event)
 {
   SDL_Event sdl_event;
   event = Event::kOther;
@@ -142,7 +136,7 @@ int View::GetEvent(Event &event)
   return r;
 };
 
-void View::Delay(unsigned delay_ms)
+void ViewSDL::Delay(unsigned delay_ms)
 {
   SDL_Delay(delay_ms);
 }

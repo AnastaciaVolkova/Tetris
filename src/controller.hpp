@@ -1,9 +1,10 @@
 #ifndef _CONTROLLER_HPP_
 #define _CONTROLLER_HPP_
-#include "model.hpp"
 #include "point.hpp"
-#include "view.hpp"
 #include <memory>
+
+class Model;
+class View;
 
 //! Class contains user commands.
 enum class Commands

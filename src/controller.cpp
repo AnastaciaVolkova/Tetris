@@ -1,4 +1,7 @@
 #include "controller.hpp"
+#include "model.hpp"
+#include "view.hpp"
+
 #include <cmath>
 
 using std::make_unique;
