@@ -21,12 +21,12 @@ void Controller::Run()
 {
   while (to_continue_)
   {
-    size_t start = SDL_GetTicks();
+    size_t start = view_->GetTicks();
     Commands command = Input();
     Update(command);
     Render();
-    if ((SDL_GetTicks() - start) < target_frame_duration_)
-      SDL_Delay(target_frame_duration_ - (SDL_GetTicks() - start));
+    if ((view_->GetTicks() - start) < target_frame_duration_)
+      view_->Delay(target_frame_duration_ - (view_->GetTicks() - start));
   }
 }
 

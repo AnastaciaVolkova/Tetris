@@ -59,6 +59,12 @@ public:
   */
   int GetEvent(Event &event);
 
+  //! Wait a specified number of milliseconds before returning
+  /*!
+  \param [in] delay_ms - delay in milliseconds
+  */
+  void Delay(unsigned delay_ms);
+
 private:
   SDL_Window *sdl_window_;
   SDL_Renderer *sdl_renderer_;

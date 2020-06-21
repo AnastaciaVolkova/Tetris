@@ -142,3 +142,8 @@ int View::GetEvent(Event &event)
   }
   return r;
 };
+
+void View::Delay(unsigned delay_ms)
+{
+  SDL_Delay(delay_ms);
+}
